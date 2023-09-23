@@ -1,0 +1,141 @@
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem*{theorem}{Th}
+\newtheorem{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+\newcommand{\vec}{\overrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{\\(Конспектировал Иван-Чай)}
+	\date{11.09.2023}
+	\title{Доп по линейной алгебре}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+	\section{Векторы}
+
+	\begin{definition}
+	Чет про направленные отрезки.
+	\end{definition}
+
+	\begin{definition}
+	Вектор - класс эквивалентности направленных отрезкв.
+	\end{definition}
+
+	Операции
+	\begin{itemize}
+	\item Сложение.
+	\item Умножение на число $ \overrightarrow{b} = \overrightarrow{a} \lambda, \lambda \in \R
+		\hrarrow | \overrightarrow{b} | = \lambda |\overrightarrow{a}|. $
+	\end{itemize}
+
+	\begin{definition}
+	Линейная комбинация векторов $ \vec{a_1}, \vec{a_2} \dots $ - это
+	$ \lambda_1 \vec{a_1} + \lambda_2 \vec{a_2} + \dots $.
+	\end{definition}
+
+	\begin{definition}
+	Линейная оболочка векторов — это множество всех линейных комбинаций данных векторов.
+	\end{definition}
+
+	\begin{itemize}
+	\item Тривиальная $ \Lrarrow \forall i \lambda_i = 0 $
+	\item Нетривиальная $ \Lrarrow \exists i \lambda_i \neq 0 $
+	\end{itemize}
+
+	\begin{definition}
+	$ a_1, a_2, \dots a_n $ - линейно зависимые, если нетривиальная линейная комбинация, такая что
+	\[ % \[
+		\sum_{i=1}^n \lambda_i \vec{a_i} = 0(*).
+	\] % \]
+	\end{definition}
+	\begin{definition}
+	$ a_1, a_2 \dots a_n $ - линейно независимые, если из (*) $ \Rarrow $ следует тривиальностькомбинации.
+	\end{definition}
+
+	Если выписать векторы в матрицу $ A $, и $ \det A = 0 $,
+	то они линейно зависимые
+
+	\begin{definition}
+	Три вектора комплонарны, если они лежат в одной плоскости.
+	\end{definition}
+
+	\begin{statement}
+	Три вектора линейно зависимы $ \Lrarrow $ они компланарны.
+	\end{statement}
+
+	\begin{definition}
+	Упорядоченная совокупность трех(двух) линейно независимых векторов в пространстве(на плоскости)
+	называется базисом.
+	\end{definition}
+
+	\begin{statement}
+		Пусть $ \vec{a_1}, \vec{a_2}, \vec{a_3} $ - базис, тогда $ \forall \vec{v} \hrarrow \exists
+		\lambda_1, \lambda_2, \lambda_3 \in \R: \vec{v} =
+		\lambda_1 \vec{a_1} +
+		\lambda_2 \vec{a_2} +
+		\lambda_3 \vec{a_3}. $
+	\end{statement}
+
+	\section{Геометрия}
+
+	\begin{definition}
+	Система координат - это базис и начало отсчета.
+	\end{definition}
+
+\end{document}

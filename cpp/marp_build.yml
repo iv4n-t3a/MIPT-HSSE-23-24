@@ -1,0 +1,62 @@
+stages:
+  - test
+  - build
+  - deploy
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - when: always
+
+variables:
+  MARP_SVG_PNG_DPI: "200"
+
+.marp-build:
+  stage: build
+  image: registry.gitlab.com/brettops/containers/marp:main
+  script:
+    - marp --version
+
+    # inject a theme into the local environment if present
+    - |-
+      if [[ -n "$MARP_THEME_URL" ]] ; then
+        marp_theme_file="$(mktemp -u).css"
+        wget -O "$marp_theme_file" "$MARP_THEME_URL"
+        MARP_OPTS="$MARP_OPTS --theme $marp_theme_file"
+      fi
+    - echo "$MARP_OPTS"
+
+    # preprocess slides with marp-format
+    - mapfile -t SLIDES < <(find . -name slides.md -type f -not -path "./public/*")
+    - |-
+      for slide in "${SLIDES[@]}"
+      do
+        preprocess="$(echo "$slide" | sed -e 's@slides\.md$@index.md@')"
+        echo "preprocessing '$slide' to '$preprocess'"
+        marp-format --output "$preprocess" "$slide"
+      done
+
+    # run marp on preprocessed slides
+    - mapfile -t PREPROCESSED < <(find . -name index.md -type f)
+    - marp $MARP_OPTS --html "${PREPROCESSED[@]}"
+    - marp $MARP_OPTS --allow-local-files --pdf "${PREPROCESSED[@]}"
+
+    # marshal into public directory
+    - >
+      rsync -zarv
+      --exclude ".git/"
+      --exclude "public/"
+      --include "*/"
+      --include "index.html"
+      --include "index.md"
+      --include "index.pdf"
+      --include "*.jpg"
+      --include "*.png"
+      --include "*.svg"
+      --exclude "*"
+      . public/
+
+  artifacts:
+    paths:
+      - public/

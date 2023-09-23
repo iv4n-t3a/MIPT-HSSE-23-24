@@ -1,0 +1,9 @@
+include:
+  - local: marp_build.yml
+  - local: codestyle_check.yml
+
+marp-build:
+  extends: .marp-build
+
+codestyle_check:
+  extends: .codestyle-check

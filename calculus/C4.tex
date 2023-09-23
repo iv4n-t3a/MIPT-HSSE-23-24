@@ -1,0 +1,383 @@
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem*{theorem}{Th}
+\newtheorem{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem*{lemma}{Lem}
+\newtheorem{lemma_}{Lem}
+\newtheorem*{remark}{Rmk}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem*{corollary_}{Cl}
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+
+\newcommand{\Ro}{\overline{\mathbb R}}
+\newcommand{\Rh}{\hat{\mathbb R}}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Тюленев Александр Иванович\\(Конспектировал Иван-Чай)}
+	\date{13.09.23}
+	\title{Введение в математический анализ}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+    \section{Утверждения эквивалентные определению предела.}
+
+    \begin{statement}
+        Следущие утверждения эквивалентны $ \forall a \in \Rh, c \geq 1 $
+
+        \begin{enumerate}
+            \item $ \lim_{n \to \infty} x_n = a. $
+            \item $ \forall \eps > 0 \quad \exists N(\eps): \quad \forall n \geq N(\eps)
+                \hrarrow x_n \in U_\eps(a). $
+            \item $ \forall \widetilde{\eps} > 0 \quad \exists \widetilde{N} (\widetilde{\eps}):
+                \quad \forall n \geq \widetilde{N} (\widetilde{\eps})
+                \hrarrow x_n \in U_{\widetilde{\eps} * c}(a). $
+            \item $ \forall \eps > 0 \quad \exists N'(\eps) \in \N:
+                \forall n > N'(\eps) \hrarrow x_n \in U_{\eps}(a). $
+        \end{enumerate}
+    \end{statement}
+
+    \begin{proof}[(2) \Rarrow (3):]
+        Т.к. $ c \geq 1 $, то $ U_{\eps}(a) \subset U_{c*\eps}(a) $
+        \Rarrow при $ \widetilde{N} = N(\eps). $
+    \end{proof}
+
+    \begin{proof}[(3) \Rarrow (2):]
+        $ \forall \eps > 0 \quad
+        \exists N(\eps) := \widetilde{N} (\widetilde{\eps}) =
+        \widetilde{N}\left(\frac{\eps}{c}\right):
+        \forall n \geq \widetilde{N} \left( \frac{\eps}{c} \right) \hrarrow
+        x_n \in U_{\widetilde{\eps} c}(a) = U_{\eps}(a). $
+    \end{proof}
+
+    \begin{proof}[(2) \Rarrow (4)]
+        $ N'(\eps) = N(\eps). $
+    \end{proof}
+
+    \begin{proof}[(4) \Rarrow (2)]
+        $ N(\eps) = N'(\eps) + 1. $
+    \end{proof}
+
+    \begin{definition}
+        Последовательность $ \left\{ x_n \right\}  $ называется сходящейся $ \Lrarrow $
+        она имеет конечный предел, в противном случае она называется расходящейся.
+    \end{definition}
+
+    \begin{definition}
+        Последовательность $ \left\{ x_n \right\}  $ называется ограниченной
+        $ \Lrarrow \exists M \in [0, +\infty):
+        \quad \forall n \in \N \hrarrow \left| x_n \right| < M. $
+    \end{definition}
+
+    \begin{definition}
+        Последовательность называется бесконечно большой
+        $ \Lrarrow \exists \lim_{n \to \infty} x_n = \infty $.
+    \end{definition}
+
+    \begin{statement}
+        \left[
+        \begin{aligned}
+            \lim_{n \to \infty} x_n = + \infty \\
+            \lim_{n \to \infty} x_n = - \infty \\
+        \end{aligned}
+        \right.
+        \Rarrow \lim_{n \to \infty} x_n = \infty.
+    \end{statement}
+
+    \begin{exersise}
+        Как связаны условия
+
+        \begin{enumerate}
+            \item $ \left\{ x_n \right\}  $ - неограниченно.
+            \item $ \left\{ x_n \right\}  $ - бесконечно большая.
+        \end{enumerate}
+    \end{exersise}
+
+    \begin{proof}[\neg (1) \Rarrow (2)]
+        Контрпример:
+        $ \left\{ (1 + (-1)^{n} )*n \right\}_{n = 1}^{\infty}.
+    \end{proof}
+
+    \section{Лемма о непересекающихся отрезках}
+    \begin{lemma}[Лемма о непересекающихся отрезках.]
+        $ \quad \forall a, b \in \Ro, a \neq b \quad \exists \eps > 0:
+        U_{\eps}(a) \cap U_{\eps}(b) = \varnothing. $
+    \end{lemma}
+
+    \begin{proof}[Для $ -\infty < a < b < +\infty $]
+        \[ \eps = \frac{b - a}{2}. \]
+    \end{proof}
+
+    \begin{proof}[Для $ -\infty < a < b = +\infty $ ]
+
+        \[ \eps = \frac{1}{\left| a \right| + 1} \leq 1.\]
+
+        $ U_{\eps}(b) = (\left| a \right| + 1, +\infty). $
+
+        $ U_{\eps}(a) = \left( a - \frac{1}{1 + \left| a \right|}, a + \frac{1}{1 + |a|}  \right)
+        \subset (a - 1, a + 1). $
+    \end{proof}
+
+    \begin{proof}[Для $ -\infty = a < b < +\infty $]
+        \[ \eps = \frac{1}{\left| b \right| + 1}. \]
+    \end{proof}
+
+    \begin{proof}[Для $ -\infty = a < b = +\infty $]
+        \[ \eps = 1. \]
+    \end{proof}
+
+    \section{Свойства пределов.}
+
+    \begin{theorem}
+        $ \forall \left\{x_n \right\}_{n = 1}^{\infty} \hrarrow
+        \exists \lim_{n \to \infty} x_n \in \Ro \Rarrow
+        \exists! \lim_{n \to \infty} x_n \in \Ro. $
+    \end{theorem}
+
+    \begin{proof}
+        Допустим $ \exists a \in \Ro, \exists b \in \Ro: \newline
+        a \neq b \land \lim_{n \to \infty} x_n = a \land \lim_{n \to \infty} x_n = b. $
+
+        По предывдущей лемме $ \exists \eps^{*}  > 0: U_{\eps^{*}}(a) \cap U_{\eps^{*} }(b)
+        = \varnothing $
+
+        \[ \lim_{n \to \infty} x_n = a \Lrarrow \forall \eps > 0 \exists N_1(\eps) \in \N:
+        \forall n \geq N_1(\eps) \hrarrow x_n \in U_{\eps}(a). \]
+        \[ \lim_{n \to \infty} x_n = b \Lrarrow \forall \eps > 0 \exists N_2(\eps) \in \N:
+        \forall n \geq N_2(\eps) \hrarrow x_n \in U_{\eps}(a). \]
+
+        $ n > max \left\{ N_1, N_2 \right\} $, то $ x_n \in U_{\eps*}(a) \cap U_{\eps*}(b) =
+        \varnothing $ - противоречие.
+    \end{proof}
+
+    \begin{remark}
+        В $ \Ro $ предел не единственен.
+    \end{remark}
+
+    \begin{theorem}
+        Если последовательность $ \left\{x_n \right\}_{n = 1}^{\infty} $ - сходится, то
+        она ограниченна.
+    \end{theorem}
+
+    \begin{proof}
+        Пусть $ \lim_{n \to \infty} x_n = a \in \R \Rarrow
+        \forall \eps > 0 \quad \exists N(\eps) \in \N: \quad \forall n \geq \N \hrarrow
+        x_n \in U_{\eps}(a). $
+
+        В частности $ \exists N = N(1): \forall n \geq N(1) \hrarrow |x_n| \leq |a| + 1 $
+
+        $ M = max \left\{ |x_1, x_2, \dots |x_{N(1)}| \right\} \Rarrow
+        \left| x_n \right| \leq \left| a \right| + 1 \quad \forall n \in \N. $
+    \end{proof}
+
+    \begin{remark}
+        Обратное не верно.
+    \end{remark}
+
+    \begin{proof}
+        Контрпример $ \left\{ (-1)^{n} \right\}_{n = 1}^{\infty}. $
+    \end{proof}
+
+    \begin{definition}
+        Число $ M $ называется максимальным элементом множества $ E \subset \R
+        \Lrarrow M = \max E $, если
+
+        \begin{enumerate}
+            \item $ M \in E. $
+            \item $ M \geq x \quad \forall x \in E. $
+        \end{enumerate}
+    \end{definition}
+
+    \begin{exersise}
+        Доказать, что $ \sup{A} \in A \Lrarrow \sup{A} = \max{A}. $
+    \end{exersise}
+
+    \section{Свойства пределов сходящихся последовательности, связаные с арифметическими
+        операциями}
+
+    \begin{definition}
+        Последовательность $ \left\{ x_n \right\} $ называется бесконечно малой,
+        если $ \exists \lim_{n \to \infty} = 0. $
+    \end{definition}
+
+    \begin{lemma}
+        Если $ \left\{ x_n \right\}  $ - ограничена, $ \left\{ y_n \right\} $ - бесконечно малая,
+        то $ \left\{ z_n \right\} := \left\{ x_n y_n \right\}_{n = 1}^{\infty} $ - бесконечно
+        малая.
+    \end{lemma}
+
+    \begin{proof}
+        Запишем определения
+
+        \begin{cases}
+            $ x_n $ - ограничена \\
+            $ y_n $ - бесконечно малая \\
+        \end{cases}
+
+        \begin{cases}
+        $ \Lrarrow \exists M \geq 0: |x_n| \leq M \quad \forall n \in \N $ \\
+        $ \Lrarrow \forall \eps > 0 \quad \exists N \in N:
+            \forall n \geq N \hrarrow |y_n| < \eps $
+        \end{cases}
+
+        \[ \forall \eps > 0 \quad \exists N(\eps) \in \N: \forall n \geq N(\eps) \Rarrow
+        |y_n x_n| < M * \eps.\]
+        (В силу утверждения из начала конспекта.)
+        \[\lim_{n \to \infty} z_n = 0. \]
+    \end{proof}
+
+    \begin{lemma}
+        Сумма, разность и произведение бесконечно малых последовательностей есть
+        бесконечно малая последовательность.
+
+        Если $ \left\{x_n \right\}_{n = 1}^{\infty} $ и
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $ - бм, то
+        $ \left\{ x_n \pm y_n \right\} $ и
+        $ \left\{ x_n y_n \right\} $ - бм.
+    \end{lemma}
+
+    \begin{proof}[Для суммы и разности]
+        :
+
+        \begin{cases}
+            \forall \eps > 0 \quad \exists N_1 \in \N: \forall n \geq N_1 \hrarrow
+            x_n \in U_{\frac{\eps}{2}}(0) \\
+            \forall \eps > 0 \quad \exists N_2 \in \N: \forall n \geq N_2 \hrarrow
+            x_n \in U_{\frac{\eps}{2}}(0) \\
+        \end{cases}
+        $ \Rarrow $
+        \newline
+        $ \forall \eps > 0 \quad \exists N(\eps) := \max \left\{ N_1, N_2 \right\}:
+        \forall n \geq  N(\eps) \hrarrow x_n \pm y_n \in U_{\eps}(0). $
+    \end{proof}
+
+    \begin{proof}[Для произведения]
+        $ \left\{ x_n y_n \right\} $ - бм, т.к. $ \left\{ x_n \right\} $ - ограничена,
+        $ \left\{ y_n \right\} $ - бм.
+    \end{proof}
+
+    \begin{lemma}
+    $ \lim_{n \to \infty} x_n = a \in \R \Lrarrow \left\{ x_n - a \right\} $ - бм.
+    \end{lemma}
+
+    \begin{corollary_}
+        Пусть $ \lim_{n \to \infty} a_n = a \in \R $ и $ \lim_{n \to \infty} b_n = b \in \R $,
+        тогда:
+
+        \[ \lim_{n \to \infty} (a_n \pm b_n) = a \pm b. \]
+        \[ \lim_{n \to \infty} (a_n b_n) = a b. \]
+    \end{corollary_}
+
+    \begin{proof}[Для суммы и разности]
+        $ \left\{ (a_n \pm b_n) - (a \pm b) \right\}_{n = 1}^{\infty} $ - бм.
+    \end{proof}
+
+    \begin{proof}[Для произведения]
+        Покажем, что
+        $ \left\{ (a_n b_n) - (a b) \right\}_{n = 1}^{\infty} $ - бм.
+
+        $ a_n b_n - ab = a_n b_n - a_n b + a_n b - ab = a_n (b_n - b) + b (a_n - a). $
+
+        Рассмотрим последовательности
+
+        $ \left\{ a_n (b_n - b) \right\}_{n = 1}^{\infty} $ - бм, как произведение
+        ограниченной $ \{ a_n \} $ на бм $ \{ b_n - b \}.
+
+        $ \left\{ b (a_n - a) \right\}_{n = 1}^{\infty} $ - бм, как произведение
+        стационарной $ x_n = b $ на бм $ \{ b_n - b \}.
+    \end{proof}
+
+    \begin{lemma}
+        Пусть $ x_n \neq 0 \quad \forall n \in \N $ и $ \exists \lim_{n \to \infty} x_n = x \in \R,
+        x \neq 0 $, тогда $ \exists \lim_{n \to \infty} \frac{1}{x_n} = \frac{1}{x}. $
+    \end{lemma}
+
+    \begin{proof}
+        Покажем, что $ \left\{ x_n \right\}  $ - ограничена.
+
+        \[ \forall \eps > 0 \quad \exists N(\eps): \forall n > N \hrarrow x_n \in U_{\eps}(x). \]
+
+        В частности для $ \eps = \frac{|x|}{2}, то \quad \exists N^* \in \N: \forall n \geq N^*
+        \hrarrow x_n \in U_{\eps}(x) \Rarrow x - \frac{|x|}{2} < x_n < x + \frac{|x|}{2} $
+        $ \Rarrow n \geq N^* \hrarrow |x_n| \geq \frac{|x|}{2} $
+        $ \Rarrow n \geq N^* \hrarrow \frac{1}{|x_n|} \leq \frac{2}{|x|}.$
+
+        $ M := \left\{
+            \frac{1}{|x_1|},
+            \frac{1}{|x_2|},
+            \frac{1}{|x_3|},
+            \dots
+            \frac{1}{|x_{N^*}|},
+            \frac{2}{|x|},
+        \right\}  $, тогда
+        $ \frac{1}{|x_n|} \leq M \quad \forall n \in \N \Rarrow \left\{ \frac{1}{x_n}  \right\} $
+        - ограничена.
+
+        \[ \frac{1}{x_n} - \frac{1}{x} = \frac{x - x_n}{x x_n} = \frac{1}{x x_n} (x - x_n). \]
+
+            $ \left\{ x - x_n \right\} $ - бм,
+            $ \left\{ \frac{1}{x x_n} \right\} $ - бм
+            $ \Rarrow \left\{ \frac{1}{x_n} - \frac{1}{x} \right\} $ - бм
+            $ \Rarrow \lim_{n \to \infty} \frac{1}{x_n} = \frac{1}{x}.  $
+    \end{proof}
+
+    \begin{corollary_}
+        Пусть
+        $ \exists \lim_{n \to \infty} y_n = y \in \R $,
+        $ \exists \lim_{n \to \infty} x_n = x \in \R $.
+        Пусть $ x \neq 0 \land x_n \neq 0 \quad \forall n \in \N $.
+        Тогда \[ \exists \lim_{n \to \infty} \frac{y_n}{x_n} = \frac{y}{x}. \]
+    \end{corollary_}
+\end{document}

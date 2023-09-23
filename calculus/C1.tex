@@ -1,0 +1,254 @@
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\theoremstyle{plain}
+
+\newtheorem*{theorem}{Th}
+\newtheorem{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+\newcommand{\larrow}{\Leftarrow}
+\newcommand{\rarrow}{\Rightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\lrarrow}{\Leftrightarrow}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Тюленев Александр Иванович\\(Конспектировал Иван-Чай)}
+	\date{01.09.2023}
+	\title{Математический анализ}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\section{Сатанистские символы}
+
+	\subsection{Логические операции}
+
+	\noindent
+	$ \land $ - и \newline
+	$ \lor $ - или \newline
+	$ \neg $ - нет \newline
+
+	\subsection{Кванторы}
+
+	\noindent
+	$ \forall $ - для любого (квантор всеобщности) \newline
+	$ \exists $ - существует \newline
+	$ \exists! $ - существует и только один \newline
+	$ \hrarrow $ - выполняется
+
+	\subsection{Еще обозначения}
+	\noindent
+	$ := $ - равно по определению \newline
+	$ : $ - такой, что \newline
+	$ \rarrow $ - следует \newline
+	$ \lrarrow $ - равносильно \newline
+
+	\subsection{Операции над множеством}
+
+	\noindent
+	$ A, B $ - множества обозначаются большими буквами \newline
+	$ a, b $ - элементы маленькими \newline
+	$ \varnothing $ - пустое множество \newline
+	$ A \cup B := \left\{x: x \in A \lor x \in B\right\}} $ \newline
+	$ A \cap B := \left\{x: x \in A \land x \in B\right\}} $ \newline
+	$ A \setminus B := \left\{x: x \in A \land x \notin B\right\}} $ \newline
+	$ A \triangle B := (A \setminus B) \cup (B \setminus A) =
+	(A \cup B) \setminus (B \cap A) $ \newline
+
+	\section{Определения}
+
+	\begin{definition}
+	Множество $ X $ называется бесконечным, если $ \forall n \in \N \quad X $ содержит $ n $
+	различных элементов.
+	\end{definition}
+
+	\begin{definition}
+	Пусть $ X, Y $ - непустыве множества, тогда декартово произведение
+	\[ %
+		X \times Y := \left\{ (x, y): x \in X, y \in Y \right\}
+	\] %
+	\end{definition}
+
+	\begin{definition}
+	Задано соответствие $ f $ из $ X $ в $ Y $, если в $ X \times Y $.
+	выделено подмножество $ G_f \subset X \times Y.
+	\end{definition}
+
+	\begin{definition}
+	Если $ (x, y) \in G_f $, то говорят, что $ y $ поставлен в соответствие $ x $.
+	\end{definition}
+
+	\begin{definition}
+	Область определения
+	\[ D_f := \left\{ x \in X: \exists y \in Y \hrarrow (x, y) \in G_f \right\} \]
+	\end{definition}
+
+	\begin{definition}
+	Область значений
+	\[ E_f := \left\{ y \in Y: \exists x \in X \hrarrow (x, y) \in G_f \right\} \]
+	\end{definition}
+
+	\begin{definition}
+	Если $ D_f = X $, то говорят, что задано многозначное отображение из $ X $ в $ Y $.
+	\end{definition}
+
+	\begin{definition}
+	$ X, Y \neq \varnothing $ Будем говорить, что $ f : X \to Y $ отображение, если
+
+		\begin{cases}
+		D_f = X \\
+		\forall x \in X \quad \exists! \quad y \in Y: (x, y) \in G_f \\
+		\end{cases}
+	\end{definition}
+
+	\begin{definition}
+	Композицией отображения $ f $ и $ g $ называется отображение $ h = g \cdot f $,
+	если $ h = g(f(x)) $, где $ X, Y, Z $ - непустые множества,
+	$ f: X \rightarrow Y, \quad g: Y \rightarrow Z $ - отображения.
+	\end{definition}
+
+	\begin{definition}
+	Отображение $ f : X \rightarrow Y $ - инъекция, если
+	$ x_1 \neq x_2 \rarrow f(x_1) \neq f(x_2) $.
+	\end{definition}
+
+	\begin{definition}
+	Отображение $ f : X \rightarrow Y $ - сюрьекция, если $ E_f = Y $.
+	\end{definition}
+
+	\begin{definition}
+		Отображение $ f : X \rightarrow Y $ называют обратимым,
+		если $ \exists f^{-1}: Y \rightarrow X $ такое, что
+
+		\begin{cases}
+			f \cdot f^{-1} = Id_Y \\
+			f^{-1} \cdot f = Id_X \\
+		\end{cases}
+
+		при этом $ f^{-1} $ называют обратным к $ f $.
+	\end{definition}
+
+	\begin{definition}
+	$ Id_A := \left\{ (a, a): a \in A \right\} $
+	\end{definition}
+
+	\section{Множества натуральных, целых, рациональных и действительных чисел}
+
+	\subsection{Натуральные и целые числа}
+
+	Это материал лекции, на которую мы случайно не туда попали. Потом и ее законспектирую тоже.
+
+	\subsection{Рациональные числа}
+
+	\begin{definition_}
+	$ \Q $ - множество всех рациональных чисел. \newline
+	$ \Q $ - множество несократимых дробей вида $ \frac{n}{m} $, где $ n \in \Z, m \in \N $.
+	\end{definition_}
+
+	\subsection{Действительные числа}
+
+	\begin{definition_}
+	$ A $ расположено левее $ B $, если $ \forall a \in A $ и
+	$ \forall b \in B \hrarrow a \leqslant b $, где $ A, B $ - непустые множества.
+	\end{definition_}
+
+	\begin{definition_}
+	Множеством действительных чисел $ \R $ называется непустое множество \R,
+	на котором введены бинарные операции $ "+": \R^2 \rightarrow \R $, и
+	$ "*": \R^2 \rightarrow \R $, и отношение порядка $ "\leqslant" $, которое удволетворяет
+	следующим 15 аксиомам
+
+		\begin{enumerate}
+			\item $ a + b = b + a \quad \forall a, b \in \R $.
+			\item $ a + (b + c) = (a + b) + c \quad \forall a, b, c \in \R $.
+			\item $ \exists 0 \in \R: a + 0 = a \quad \forall a \in \R $.
+			\item $ \forall a \in \R \quad \exists (-a) \in \R: a + (-a) = 0 $.
+
+			\item $ ab = ba \quad \forall a, b \in \R $.
+			\item $ a(bc) = (ab)c \quad \forall a, b, c \in \R $
+			\item $ \exists 1 \in \R: a \cdot 1 = a \quad \forall a \in \R $.
+			\item $ \forall a \in \R \setminus \left\{0\right\}
+				\quad \exists \frac{1}{a} \in \R: a\frac{1}{a} = 1 $.
+
+			\item $ a(b+c) = ab + ac \quad \forall a, b, c \in \R $.
+
+			\item $ a, b \in \R \hrarrow a \leqslant b \lor b \leqslant a $.
+			\item $ \forall a, b, c \in \R
+				\left( a \leqslant b \rarrow a + c \leqslant b + c \right) $.
+			\item если $ a \leqslant b $, то
+				$ \forall c \geqslant 0 \hrarrow ac \leqslant bc \quad \forall a, b, c \in \R $.
+			\item $ a \leqslant b \land b \leqslant c \rarrow a \leqslant c
+				\quad \forall a, b, c \in \R $.
+			\item Если $ a \leqslant b \land b \leqslant a $, то $ a = b \quad \forall a, b \in \R $.
+
+			\item Аксиома непрерывности:
+				$ \forall A, B \subset \R $, если $ A $ расположено левее $ B $, то
+				$ \exists c \in \R: a \leqslant c \leqslant b \quad \forall a \in A $ и $ b \in B $.
+		\end{enumerate}
+
+	\end{definition_}
+
+	\begin{definition_}
+		(1) - (4) - Абелева группа по сложению.
+	\end{definition_}
+
+	\begin{definition_}
+		(1) - (9) - алгеброическое поле.
+	\end{definition_}
+
+	\section{Ограниченность}
+
+	\begin{definition_}
+	Множество $ A \subset \R $ называется ограниченным сверху, если
+	$ \exists m \in \R: a \leqslant M \quad \forall a \in A $.
+	\end{definition_}
+
+	\begin{definition_}
+	Множество $ A \subset \R $ называется ограниченным снизу, если
+	$ \exists m \in \R: a \geqslant M \quad \forall a \in A $.
+	\end{definition_}
+
+	\begin{definition_}
+	Множество $ A $ называется ограниченным, если оно ограниченно сверху и снизу.
+	\end{definition_}
+
+	\begin{definition_}
+	Множество $ A \subset \R $ называется неограниченным сверху, если
+	$ \forall m \in \R \quad \exists a(m) \in A: a(m) > m $.
+	\end{definition_}
+
+	\begin{definition_}
+	Множество $ A \subset \R $ называется неограниченным снизу, если
+	$ \forall m \in \R \quad \exists a(m) \in A: a(m) < m $.
+	\end{definition_}
+\end{document}

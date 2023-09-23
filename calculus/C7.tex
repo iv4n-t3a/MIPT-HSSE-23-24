@@ -1,0 +1,266 @@
+\documentclass[a6paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem*{theorem}{Th}
+\newtheorem{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+
+\newcommand{\or}{\overline{\mathbb R}}
+\newcommand{\hr}{\hat{\mathbb R}}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Тюленев Александр Иванович\\(Конспектировал Иван-Чай)}
+	\date{22.09.23}
+	\title{Введение в математический анализ}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+    \section{Топология числовой прямой}
+
+    \begin{definition}
+        Пусть $ E $ - непустое множество, тогда $ x $ называется точкой прикосновения
+        $ E $, если $ \forall \eps > 0 \quad U_{\eps}(x) \cap E \neq \varnothing $.
+    \end{definition}
+
+    \begin{definition}
+        Замыканием множества $ E $ называется множество всех точек прикосновения $ E $
+        и обозначается $ cl E $.
+    \end{definition}
+
+    \begin{definition}
+        Множество называется замкнутым, если оно совпадает со своим замыканием.
+    \end{definition}
+
+    \begin{remark}
+        $ E \subset cl E $.
+    \end{remark}
+
+    \begin{remark}
+        По опеределнию $ \varnothing $ и $ \R $ считаются замкнутыми.
+    \end{remark}
+
+    Пример $ a < b $, тогда $ \left[ a, b \right]  $ - замкнутое множество
+
+    \begin{proof}
+        Покажем, что $ \forall c \nin [a, b] $ не является точкой прикосновения.
+
+        \[
+            \eps* = mn \left\{ \frac{ | a - b |}{2}, \frac{ | a - c |}{2} \right\}
+        .\]
+    \end{proof}
+
+    \begin{definition}
+        Пусть $ G \subset \R $ - множестов. Будем оворить, что x - внутреняя точка G,
+        если $ \exists \eps > 0: U_{\eps}(x) \subset G $
+    \end{definition}
+
+    \begin{definition}
+        Внутренностью мнжества G называется множество всех его внутрених точек и обозначается
+        $ int G $
+    \end{definition}
+
+    \begin{definition}
+        Множество $ G_1 \subset \R $ называется открытым, если оно совподает со
+        своей внутренностью.
+    \end{definition}
+
+    $ \varnothing $ и $ \R $ - открыты по определнию.
+
+    $ int G \subset G $
+
+    Пример открытого множества:
+    $ \left( a, b \right) $ - открытое множество, $ a < b $
+
+    \begin{proof}
+        \[
+        \eps = mn \left\{ \frac{\left| x - a \right| }{2}, \frac{\left| b - x \right| }{2} \right\}
+        \]
+    \end{proof}
+
+    Полуинтервал $ (a, b] $ не является ни открытым ни замкнутым множеством.
+
+    \begin{proof}
+        \[
+            a \nin int (a, b] \\
+            b \in int (a, b]
+        .\]
+    \end{proof}
+
+    Пример
+    $ cl \Q = \R(1) $,
+    $ int \Q = \varnothing(2) $.
+
+    \begin{proof}[(1)]
+        В любом интервале найдется рациональная точка.
+    \end{proof}
+
+    \begin{proof}[(2)]
+        $ \forall (a, b) $ найдется иррациональная точка.
+    \end{proof}
+
+    \begin{proof}[Докажем, что любой интервал содержит рациональную точку]
+        $ x =  $
+    \end{proof}
+
+    \begin{proof}[Докажем, что любой интервал содержит иррациональную точку]
+        Через гомотетирование открезка на $ \left[ 0, 2 \right] $, содержащего
+        $ \sqrt{2} $
+    \end{proof}
+
+    \begin{definition}
+        $ x \in \R $ называется изолированой точкой множества $ E $,
+        если $ \exists \eps > 0: U_{\eps}(x) \cap E = \left\{ x \right\} $.
+    \end{definition}
+
+    \begin{definition}
+        $ x \in \R $ называется предельной точкой множества
+        $ E $, елси $ \forall \eps > 0 \hrarrow (U_{\eps}(x) \setminus \{x\}) \cap E
+        \neq \varnothing $
+    \end{definition}
+
+    \begin{statement}
+        x - точка прикосновения $ \Lrarrow  $
+        \left[
+        \begin{aligned}
+            x - изолированая точка \\
+            x - предельная точка
+        \end{aligned}
+        \right.
+    \end{statement}
+
+    \begin{proof}[$ \Larrow $]
+        Очевидно
+    \end{proof}
+
+    \begin{proof}[$ \Rarrow $]
+        Пусть x - точка прикосновения $ \Rarrow \forall \eps > 0 U_{\eps}(x) \cap E \neq
+        \varnothing $,
+        либо $ \forall \eps > 0 \quad U_{\eps}(x) \cap E $ содержит не только \{x\},
+        но тогда она предельная.
+    \end{proof}
+
+    \begin{theorem}[Критерий точки прикосновения]
+        Пусть $ E \neq \varnothing $ - множество. Точка x является точкой прикосновения E
+        $ \Lrarrow \exists \left\{x_n \right\}_{n = 1}^{\infty} \subset E:
+        \lim_{n \to \infty} x_n = x $.
+    \end{theorem}
+
+    \begin{statement}
+        Пусть $ \left\{x_n \right\}_{n = 1}^{\infty} $ -числовая последовательность, тогда
+        $ cl \left\{ x_n \right\} = \left\{ x_n \right\} \cup PL(\left\{ x_n \right\}) $.
+    \end{statement}
+
+    \begin{proof}
+        Пусть $ \exists \left\{x_n \right\}_{n = 1}^{\infty} \subset E:
+        \lim_{n \to \infty} x_n = x \Rarrow  \forall \eps > 0 \quad \exists
+        N: \forall n \geq N \hrarrow x_n \in U_{\eps}(x) \Rarrow
+        \forall \eps > 0 \quad \exists x = x_N \in U_{\eps}(x) \cap E $
+
+        Пусть обратно, x - т. прикосновение множества E.
+        $ \forall k \in \N $ по определению $ U_{\eps}(x) \cup E \neq \varnothing,
+        \eps = \frac{1}{k} $
+    \end{proof}
+
+    \begin{definition}
+        Множество $ K \subset \R $ называется компактным, елси из $ \forall $ последовательность
+        точек $ \left\{x_n \right\}_{n = 1}^{\infty} \subset K $ можно выделить сходящуюся
+        подпоследовательность, т.ч. $ \exists \lim_{k \to \infty} x_{n_k} = x \in K $.
+    \end{definition}
+
+    \begin{theorem}[Критерий компактности]
+        Множество $ K \subset \R $ - компактно $ \Lrarrow $ оно ограничено и замкнуто.
+    \end{theorem}
+
+    \begin{proof}[ $ \Larrow $ ]
+        Возьмем произвольную последовательность $ \left\{x_n \right\}_{n = 1}^{\infty} $,
+        покажем, что $ \exists  $ сходящаяся в K подпоследовательнось.
+
+        Т.к. $ \left\{x_n \right\}_{n = 1}^{\infty} $ - ограничена, то по т. Б-В
+        $ \exists $ подоследовательность, которая сходится куда-то
+
+        Пусть $ x* = \lim_{n \to \infty} x_n $, yj njulf ч* - частичный предел R, а
+        k - замкнуто $ \Rarrow x* \in K $
+    \end{proof}
+
+    \begin{proof}[ $ \Rarrow $]
+        Пусть $ k $ - компактна, докажем, что она ограничена и замкнута.
+
+        Предположим, что K - неограничена $ \Rarrow   \quad \forall j \in N \quad
+        \exists x_j \in K: |x_j| > j \Rarrow \exists \left\{ x_j \right\} \subset K
+        \lim_{j \to \infty} \left| x_j \right| = +\infty $ - противоречие
+        $ \Rarrow  $ - л = огр.
+    \end{proof}
+
+    \begin{definition}
+        Система множеств $ \left\{ U_\alpha \right\}, \alpha \in I $ называется
+        покрытием множества $ E $, если $ E \subset \cup_{\alpha \in I} U_{\alpha} $
+    \end{definition}
+
+    \begin{definition}
+        Система $ \left\{ U_\alpha \right\}_{\alpha \in I}  $ называется подпокрытием, если
+        $ J \subset I $ и $ E \subset \cup_{p \in J} U_\beta $
+    \end{definition}
+
+    \begin{lemma}
+        Из $ \forall  $ открытого покрытия K можно выделиь конечное подпокрытие.
+    \end{lemma}
+
+    \begin{exersise}
+        Доказать, что если из $ \forall  $ любого открытого множества можно выделить конечное
+        подпокрытие, то это множество компактно.
+    \end{exersise}
+\end{document}

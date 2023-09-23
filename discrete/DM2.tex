@@ -1,0 +1,199 @@
+\documentclass[a6paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\theoremstyle{plain}
+
+\newtheorem*{theorem}{Th}
+\newtheorem{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+\newcommand{\larrow}{\Leftarrow}
+\newcommand{\rarrow}{\Rightarrow}
+\newcommand{\lrarrow}{\Leftrightarrow}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Зухба Анастасия Викторовна\\(Конспектировал Иван-Чай)}
+	\date{01.09.2023}
+	\title{Дискретная математика}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\begin{defintion}
+	Компонента связности - это связный подграф, максимальный по включению
+	\end{defintion}
+
+	\begin{definition}
+		\begin{enumerate}
+			\item Дерево - связный граф без циклов
+			\item Между любыми двумя вершинами $ \exists! $ простой путь
+			\item  Связный граф, в котором $ \left| V \right| = \left| E \right| - 1 $
+			\item Граф без циклов, в котором $ \left| V \right| = \left| E \right| - 1 $
+		\end{enumerate}
+	\end{definition}
+
+	\begin{proof}
+		(1) -> (2)
+
+		Пусть есть два маршрута между двумя вершинами, тогда есть цикл
+	\end{proof}
+
+	\begin{proof}
+		(2) -> (3)
+
+		По индукции для количества ребер
+
+		База: $ \left| V \right| = 1 $
+
+		Переход: Пусть $(2) \rarrow (3) $ для $ \left| V \right| \leq k $
+
+		Рассмотрим граф с $ \left| V \right| = k + 1 $
+
+		Удаление ребра приведет к тому, что граф распадется на две компоненты связности
+		с $ k_1 $ и $ k_2 $ количеством вершин
+
+		Для каждого из подграфов: $ k_1 + k_2 = k + 1 \rarrow k_1 \leq k \land k_2 \leq k $
+		Выполняется (2), а значит, по предположению индукции, выполняется и (3)
+
+		Значит для исходного графа $ 1 + (k_1 - 1) + (k_2 - 1) = k_1 + k_2 - 1 = k $ - ребер
+		верно (3)
+	\end{proof}
+
+
+	\begin{proof}
+		$ (3) \rarrow (4) $
+
+		Пусть (3) - истинно, но в графе есть цикл(а значит и простой цикл)
+
+		Рассмотрим простой цикл $ U_1, U_2, U_3 \dots U_n, U_1 $ длины $ n $ (тогда имеет и
+		$ n $ ребер
+
+		Для каждой вершины $ U_i $ не из цикла рассмотрим кратчайший путь к $ U_1 $
+		\begin{statement}
+		Первые ребра всех путей различны
+		\end{statement}
+
+		Тогда $ \left| E \right| \geq k + n $ - противоречие,
+		где $ k $ - количество вершин вне цикла
+	\end{proof}
+
+	\begin{proof}
+	$ (4) \rarrow (1) $
+
+	Пусть у графа $ k $ компонент связности, тогда каждая компонента
+	связности - дерево, а значит для нее верно $ (1) \rarrow (2) \rarrow (3) $
+
+	\begin{allign}
+	\sum_{i=1}^k \left| E_i \right| = \sum_{i = 1}^k \left(\left|V_j\right| - 1 \right) =
+	\left| V \right| - k \rarrow k = 1 $
+	\end{allign}
+	\end{proof}
+
+	\begin{definition}
+		Эйлеров путь - путь, который проходит по каждому ребру ровно по одному разу
+	\end{definition}
+
+	\begin{definition}
+		Эйлеров цикл - замакнутый эйлеров путь
+	\end{definition}
+
+	\begin{defintion}
+		Гамельтонов путь - путь, который проходит через каждую вершину по 1 разу
+	\end{defintion}
+
+	\begin{defintion}
+		Гамельтонов цикл - замкнутый гамельтонов путь
+	\end{defintion}
+
+	\begin{defintion}
+		Граф называется эйлеровым, если в нем существет эйлеров цикл
+	\end{defintion}
+
+	\begin{theorem}
+		В связном графе $ \exists $ эйлеров цикл $ \lrarrow \deg{U} \mod 2 = 0
+		\quad \forall U \in V $
+	\end{theorem}
+
+	\begin{proof}
+	Рассмотрим эйлеров цикл, каждая вершины кроме начала и конца встречается рядом с 2 своими ребрами, ребра не повторяются
+	$ \left| E \right| = 1 + 2m + 1 $
+	\end{proof}
+
+	\begin{proof}
+		Рассмотрим граф, все степени которого четны. В нем всегда будет простой цикл.
+		Разобьем его на не пересекающиеся по ребрам простые циклы. Пусть его можно разбить на
+		m циклов указанным способом, докажем по индукции для m
+
+		База: $ m = 1 $ - граф содержит эйлеров цикл
+		Переход: Предположим, что граф разбивается не более чем
+		на $ m $ простых циклов $ \forall m \leq k $, тогда для него $ \exists $
+		эйлеров цикл.
+
+		$ m = k + 1 $
+		Рассмотрим один из простых циклов $ z = U_1, U_2, U_3 \dots U_i $. Удалим его из графа и
+		граф распадется на несколько компонент связности, для каждой из которых
+		выполнено предположение индукции, а значит есть эйлеров цикл.
+		Для каждой компоненты связности запишем ее эйлеров цикл начиная с вершины,
+		встречающейся в цикле $ z $ и "присоеденим" его к обходу z.
+	\end{proof}
+
+	\begin{theorem}
+		В связном графе $ \exists $ эйлеров цикл $ \lrarrow $ в графе не более двух
+		вершин нечетной степени
+	\end{theorem}
+
+	\begin{definition}
+		Граф $ G(L \lor R, E) называется двудольным, если $ \exists $
+		такое разбиение, что $ V = L \lor R, L \land R = \varnothing $, что любое ребро имеет
+		вид $ (U, U'): U \in L, U' \in R $
+	\end{definition}
+
+	\begin{statement}
+		Граф двудольный $ \lrarrow $ в нем нет циклов нечетной длины.
+	\end{statement}
+
+	\begin{proof}
+		Выберем произвольную вершину и отнесем ее и все вершины на четном расстоянии
+		к $ R $, а остальные к $ L $ - это возможно только когда нет циклов нечетной длины
+	\end{proof}
+
+	\begin{defintion}
+		Паросочетание - это подграф, который является двудольным графом и его степень больше равна
+		еденицы
+	\end{defintion}
+
+	\begin{theorem}
+		Теорема Холла.
+
+		В двудольном графе $ \exists $ паросочетание, включающие все вершины $ L \lrarrow $
+		у любого подмножества $ L $ не менее $ \left| V_i \right| $ различных вершин в $ R $
+
+	\end{theorem}
+\end{document}
