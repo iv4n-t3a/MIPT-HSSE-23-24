@@ -1,0 +1,344 @@
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem*{theorem}{Th}
+\newtheorem{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+    linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+    \pagenumbering{gobble}
+    \author{
+        Тюленев А.И.\\
+        Конспектировал Иван-Чай\\
+        Если будут ошибки дайте пизды @coolstory\_bob}
+    \date{06.09.2023}
+    \title{Введение в математический анализ}
+
+    \linespread{1.4}
+    \selectfont
+
+    \maketitle
+    \newpage
+
+    \tableofcontents
+
+    \begin{definition}
+        Расширенная числовая прямая
+        $ \overline{\R} := \R \cap \{+\infty\} \cap \{-\infty\} $.
+    \end{definition}
+
+    \section{Верхняя и нижняя грань множества}
+
+    \begin{definition}
+    Число $ M $ называется верхней гранью числового (непустого) множества $ A \subset \R $,
+    если $ a \leq M \quad \forall a \in A $.
+    \end{definition}
+
+    \begin{definition}
+    Число $ M $ называется нижней гранью числового (непустого) множества $ A \subset \R $,
+    если $ a \geq M \quad \forall a \in A $.
+    \end{definition}
+
+    \section{Супремум}
+
+    \begin{definition}
+    Пусть $ A \subset \R $ - ограниченное сверху множество. Число $ M \in \R $ называется
+    супремумом $ A $ и записывается $ M = \sup A $, если
+
+    \begin{itemize}
+        \item $ M $ - является верхней гранью $ A \Lrarrow \forall a \in A \hrarrow a \leq M $.
+        \item $ \forall M' \leq M \quad \exists a(M') \in A : M' < a(M') \leq M $.
+    \end{itemize}
+    \end{definition}
+
+    \begin{definition}
+    Если $ A \subset \R $ - неограниченно сверху, то $ \sup A := +\infty $.
+    \end{definition}
+
+    \section{Теорема о существовании и единственности супремума}
+
+    \begin{theorem}[Теорема о существовании и единственности супремума]
+
+    \[ \forall A \subset \R, A \neq \varnothing \quad \exists! \sup A \]
+    \end{theorem}
+
+    \begin{proof}
+        Для неограниченного сверху $ A \subset \R \hrarrow \sup A := +\infty $
+
+        Для ограниченного сверху $ A \subset \R \hrarrow \quad \exists $ верхняя грань
+
+        Пусть $ B = \{ M \in \R: M - $ верхняя грань $ \} $, тогда
+        $ B \neq \varnothing \quad \land $
+        $ A $ расположенно левее $ B $
+
+        По аксиоме непрерывности $ \exists c \in \R: a \leq c \leq M \quad
+        \forall a \in A, \forall M \in B $
+
+        Покажем, что $ c = \sup A: $
+
+        \begin{enumerate}
+            \item Т.к. $ a \leq c \quad \forall a \in A \Rarrow c $ - верхняя грань.
+            \item Предположим, что $ \exists c' < c: c' $ - верхняя грань $ A $.
+                Тогда $ c' \in B $, но $ c $ было выбрано так, что $ c \leq M \quad \forall M \in B $,
+                в частности $ c \leq c' $ - противоречие.
+                $ \Rarrow \forall c' < c \hrarrow
+                    c' \notin B \Lrarrow
+                    \neg \left(c' \in B \right) \Lrarrow
+                    \neg(\forall a \in A \hrarrow a \leq c') \Lrarrow
+                    \exists a(c') \in A: a(c') > c' $,
+                    но т.к. $ a(c') \in A $, то $ a(c') \leq c $.
+                    Т.е. $ \forall c' < c \quad \exists a(c') \in A: c' < a(c') \leq c $
+        \end{enumerate}
+
+        Единственность:
+
+        Допустим $ \exists M_1 \in \R: M_1 = \sup A \quad \land \exists M_2 \in \R: M_2 = \sup A $.
+        Пусть $ M_1 > M_2 $, но тогда по 2 пункту определения супремума для $ M_1 $:
+        $ \exists a(M_2) \in A: a(M_2) > M_2 \Rarrow $ $ M_2 $ - не верхняя грань, противоречие.
+    \end{proof}
+
+    \begin{statement}
+        $ M = \sup A \Lrarrow $
+        \begin{cases}
+            M \in \overline \R $ \\
+            a \leq M \quad \forall a \in A \\
+            \forall M' < M \exists a(M') \in A: M' < a(M') \leq M \\
+        \end{cases}
+    \end{statement}
+
+    \section{Инфинум}
+
+    \begin{definition}
+    $ m \in \R $ - называется инфинумом ограниченного снизу множества, если
+
+    \begin{cases}
+        m \leq a \quad \forall a \in A \\
+        \forall m' > m \quad \exists a(m') \in A: m \leq a(m') < m'
+    \end{cases}
+    \end{definition}
+
+    \begin{definition}
+        Если $ A $ - неограниченно сверху, то $ \inf A := - \infty $.
+    \end{definition}
+
+    \begin{theorem}[Теорема о существовании и единственности инфинума]
+        \[ \forall A \subset \R, A \neq \varnothing \quad \exists! \inf A \]
+    \end{theorem}
+
+    \begin{statement}
+    $ m = \inf A $
+    \begin{cases}
+        m \in \overline \R \\
+        m \leq a \quad \forall a \in A \\
+        \forall m' > m \quad \exists a(m') \in A: m \leq a(m') < m' \\
+    \end{cases}
+    \end{statement}
+
+    \begin{statement}
+        Аксиома непрерывности $ \Lrarrow $
+            Теорема о существовании и единственности супремума и
+            Теорема о существовании и единственности инфинума.
+    \end{statement}
+
+    \section{Лемма архимеда}
+
+    \begin{theorem}[Лемма Архимеда]
+    \[ \forall M' \in \R \quad \exists N(M') \in \N: N(M') > N \]
+    \end{theorem}
+
+    \begin{proof}
+    Предположим, что $ \N $ - ограниченно сверху $ \Rarrow $ $ \exists $ верхняя грань и конечный
+    супремум $ M = \sup \N < + \infty $
+    $ \Rarrow M' = M - 1: \exists N(M') \in \N: N(M') > M - 1 \Rarrow
+    N(M') + 1 > M $ - противоречие.
+    \end{proof}
+
+    \section{Лемма Кантора}
+
+    \begin{definition}
+    Отображение из $ \N $ в множество всех отрезков на числовой прямой $ \R $ назовем
+    последовательностью отрезков и обозначим
+    $ \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} $.
+    \end{definition}
+
+    \begin{definition}
+    Будем говорить, что
+    $ \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} $
+    - последовательность вложенных отрезков, если
+    $
+    \left[ a_{n+1}, b_{n+1} \right]
+    \subset
+    \left[ a_{n}, b_{n} \right]
+    \forall n \in \N
+    $.
+    \end{definition}
+
+    \begin{theorem}[Лемма Кантора или принцип вложенных отрезков]
+        $ \forall $ последовательности вложеннных отрезков
+    $
+    \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} \hrarrow
+    \exists x \in
+    \cap_{n=1}^{+\infty}
+    \left[ a_{n}, b_{n} \right]
+    \Lrarrow
+    \cap_{n=1}^{+\infty}
+    \left[ a_{n}, b_{n} \right]
+    \neq \varnothing
+    $.
+    \end{theorem}
+
+    \begin{proof}
+    Справедливо неравенство
+    $ -\infty < a_n \leq a_{n+1} \dots \leq b_{n+1} \leq b_n < +\infty \quad \forall n \in \N $.
+
+    $ \forall m, n \in \N \hrarrow -\infty < a_m \leq b_n < +\infty $.
+
+    $ m \geq n $
+    $ \Rarrow $ по индукции $ b_m \leq b_n \Rarrow a_m \leq b_m \leq b_n $.
+
+    $ n < m $
+    $ \Rarrow a_m \leq a_n \leq b_n $.
+
+    \noindent
+    $ A := \{a_1, a_2, a_3 \dots \} $.
+    \newline
+    $ B := \{b_1, b_2, b_3 \dots \} $.
+
+    Из того, что $ a_m \leq b_n \quad \forall m, n \in \N $
+    вытекает, что $ A $ расположенно левее $ B $
+    $ \Rarrow \exists c \in \R: a_n \leq c \leq b_n \quad \forall n, m \in \N $
+    $ \Rarrow a_n \leq c \leq b_n \quad \forall n \in \N $
+    $ \Rarrow c \in \left[ a_n, b_n \right] \quad \forall \N $
+    $ \Rarrow c \in $
+    $ \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} $.
+    \end{proof}
+
+    \begin{exersise}
+    Доказать лемму Кантора без аксиомы непрерывности с использованием супремума и инфинума.
+    \end{exersise}
+
+    \section{Стягивающяяся система вложенных отрезков}
+
+    \begin{definition}
+    Последовательность вложенных отрезков
+    $ \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} $
+    называется стягивающейся, если
+    $ \forall n \in \N \quad \exists $
+    отрезок
+    $ \left[ a_{m(n)}, b_{m(n)} \right]: $
+    $ \left| \left[ a_{m(n)}, b_{m(n)} \right] \right| < \frac{1}{n} $.
+    \end{definition}
+
+    \begin{theorem}
+    Стягивающяяся последовательность вложенных отрезков имеет единственную общую точку.
+    $ \Lrarrow $
+    $ \exists! x \in $
+    $ \cap_{n=1}^{+\infty} $
+    $ \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} $.
+    \end{theorem}
+
+    \begin{proof}
+    Предположим, что $ \exists x_1, x_2: $
+    $ x_1 \in $
+    $ \cap_{n=1}^{+\infty} $
+    $ \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} $
+    $ \land x_1 \in $
+    $ \cap_{n=1}^{+\infty} $
+    $ \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} $
+    $ \land x_1 \neq x_2 $
+
+    \noindent
+    $ x_1 \neq x_2 \Rarrow |x_1 - x_2| > 0 $.
+    \newline
+    $ \frac{1}{M} := |x_1 - x_2| $.
+
+    По лемме архимеда
+    $ \exists N \in \N: N > M \Rarrow \frac{1}{N} < |x_1 - x_2| $
+    $ \Rarrow $ в силу того, что система отрезков стягивающяяся
+    $ \exists $
+    $ \left[ a_{m(n)}, b_{m(n)} \right]: $
+    $ \left| \left[ a_{m(n)}, b_{m(n)} \right] \right| < \frac{1}{n} $.
+    В частности $ x_1, x_2 \in $
+    $ \left[ a_{m(n)}, b_{m(n)} \right] \Rarrow \left| x_1 - x_2 \right| < \frac{1}{n}$
+    - противоречие.
+    \end{proof}
+
+    \begin{theorem}[3 принципа непрерывности числовой прямой]
+    Следующие утверждения эквивалентны:
+
+    \begin{itemize}
+        \item Аксиома непрерывности.
+        \item $ \exists \inf A, \exists \sup A \quad \forall A \neq \varnothing $.
+        \item Лемма Кантора и лемма Архимеда.
+    \end{itemize}
+    \end{theorem}
+
+    \begin{statement}
+    Лемма Кантора может не работать для интервалов.
+    \end{statement}
+
+    \begin{statement}
+    Пример: \newline
+        $ a_n = 0 \quad \forall n \in \N $ \newline
+        $ b_n = \frac{1}{n} \quad \forall n \in \N $ \newline
+        $ (a_n, b_n) = \left( 0, \frac{1}{n} \right) $ \newline
+        $ \cap_{n=1}^{+\infty} $
+        $ \left( 0, \frac{1}{n} \right) $
+        $ = \varnothing $
+    \end{statement}
+
+    \begin{proof}
+    Предположим $ \exists x > 0: $ \newline
+        $ x \in \cap_{n=1}^{+\infty} $
+        $ \left( 0, \frac{1}{n} \right) $
+        $ \Rarrow n < \frac{1}{x} \quad \forall n \in \N $
+        - противоречие с лемой архимеда.
+    \end{proof}
+\end{document}

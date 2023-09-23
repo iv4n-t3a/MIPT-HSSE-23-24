@@ -1,0 +1,243 @@
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem*{theorem}{Th}
+\newtheorem{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{\\(Конспектировал Иван-Чай)}
+	\date{}
+	\title{}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+    \section{Ассоциативность умножения матриц}
+
+    \begin{statement}
+    A(BC) = (AB)C
+    \end{statement}
+
+    \begin{proof}
+        Пусть $ A \in \R^{m * n}, B \in \R^{n * p}, c \in \R^{p * q} $. \newline
+
+        Сравним размеры
+
+        $ (AB) \in \R^{m * n}, $
+        $ (AB)C \in \R^{m * q} $.
+
+        $ (BC) \in \R^{n * q}, $
+        $ A(BC) \in \R^{m * q} $.
+
+        Проверим поэлементно
+
+        $ (AB)_{ij} = \sum_{k=1}^p a_{ik} b_{kj} $.
+
+        $ ((AB)C)_{jl} = $
+        $ \sum_{j = 1}^k (AB)_{ij} c_{jl} = $ \newline
+        $ = \sum_{j = 1}^k (\sum_{k=1}^p a_{ik} b_{kj}) c_{jl} = $ \newline
+        $ = \sum_{j = 1}^k \sum_{k=1}^p a_{ik} b_{kj} c_{jl} = $ \newline
+        $ = \sum_{j = 1}^k a_{ik} \sum_{k=1}^p b_{kj} c_{jl} = $ \newline
+        $ = (A(BC))_{ij} $.
+
+    \end{proof}
+
+    \section{Свойства векторов}
+
+    \begin{enumerate}
+        \item $ \forall \vec{a}, \vec{b} \quad \vec{a} + \vec{b} = \vec{b} + \vec{a} $.
+        \item $ \forall \vec{a}, \vec{b}, \vec{c} \quad
+            \vec{a} + \left( \vec{b} + \vec{c} \right) =
+            \left( \vec{a} + \vec{b} \right) + \vec{c} $.
+        \item $ \forall \vec{a} \quad \vec{a} + \vec{0} = \vec{a} $.
+        \item $ \forall \vec{a} \quad (-1) \vec{a} $ - противоположный, $ \vec{a} + (- \vec{a}) $.
+        \item $ \forall \alpha, \beta \in \R \forall \vec{a} \quad
+            (\alpha \beta) \vec{a} = \alpha (\beta \vec{a}) $.
+        \item $ \forall \vec{a} \quad 1 \vec{a} = a $.
+        \item $ \forall \alpha, \beta \in \R, \forall \vec{a} \quad
+            \left( \alpha + \beta \right) \vec{a} = \alpha \vec{a} + \beta \vec{a} $.
+        \item $ \forall \alpha \in \R, \forall \vec{a}, \vec{b} \quad
+            \alpha \left( \vec{a} + \vec{b} \right) = \alpha \vec{a} + \alpha \vec{b} $.
+    \end{enumerate}
+
+    \section{Векторные пространства}
+
+    \begin{definition}
+    Множество называется замкнутым относительно операции, если результат этой операции
+    над элементами этого множества всегда относится к нему.
+    \end{definition}
+
+    \begin{definition}
+    Множество векторов, замкнутое относительно линейных операций называется векторным
+    пространством.
+    \end{definition}
+
+    \begin{definition}
+    Если одно векторное пространство является подмножесвтом другого назовем его подпространством.
+    \end{definition}
+
+    \begin{definition}
+    $ \vec{b} =
+        \alpha_1 \vec{a}_1 +
+        \alpha_2 \vec{a}_2 +
+        \alpha_3 \vec{a}_3
+    \dots $ - линейная комбинация векторов.
+    \end{definition}
+
+    \begin{definition}
+    Линейная комбинация тривиальная, если $ \alpha_i = 0 \quad \forall i $,
+    иначе нетривиальная.
+    \end{definition}
+
+    \begin{definition}
+    Набор векторов $ \vec{a}_1, \vec{a}_2, \dots \vec{a}_n \dots $
+    - называется линейно зависимым, если
+    $ \exists \alpha_1, \alpha_2, \dots \alpha_n:
+        \alpha_1^2 + \alpha_2^2 + \dots \alpha_n^2 > 0 \land
+        \sum_{i = 1}^n \alpha_i \vec{a}_i \neq 0 \Lrarrow $
+        Существует их нетривиальная комбинация, равная нулю.
+    \end{definition}
+
+    \begin{statement}
+    Если в наборе есть $ \vec{0} $, то этот набор ЛЗ.
+    \end{statement}
+
+    \begin{statement}
+    Если набор
+    $ \vec{a}_1, \vec{a}_2, \dots \vec{a}_n $ - ЛЗ, то набор \newline
+    $ \vec{a}_1, \vec{a}_2, \dots \vec{a}_n \vec{b}_1 \vec{b}_2, \dots \vec{b}_m $
+    - ЛЗ.
+    \end{statement}
+
+    \begin{statement}
+    Если набор ЛНЗ $ \Rarrow $ его любой непустой поднабор тоже линейно независим.
+    \end{statement}
+
+    \begin{proof}
+        От противного крч.
+    \end{proof}
+
+    \begin{theorem}
+        Пусть $ \vec{x} =
+            \alpha_1 \vec{a}_1 +
+            \alpha_2 \vec{a}_2 +
+            \alpha_3 \vec{a}_3
+        \dots $ - единственное разложение $ \vec{x} $ $ \Rarrow $ набор $
+            \vec{a}_1,
+            \vec{a}_2,
+            \vec{a}_3
+        \dots $ - ЛНЗ.
+    \end{theorem}
+
+    \begin{proof}
+        $
+        (\alpha_1 - \beta_1) \vec{a}_1 +
+        (\alpha_2 - \beta_2) \vec{a}_2 +
+        (\alpha_3 - \beta_3) \vec{a}_3 \dost = \vec{0} $
+
+        Обратное: Допустим $ \exists
+            \gamma_1,
+            \gamma_2 \dots: \\
+            \gamma_1 \vec{a}_1 +
+            \gamma_2 \vec{a}_2 \dots = \vec{0}, $ тогда $
+            (\gamma_1 + \alpha_1) \vec{a}_1 +
+            (\gamma_2 + \alpha_2) \vec{a}_1 = \vec{x} $ - противоречие.
+    \end{proof}
+
+    \begin{theorem}
+    Набор ЛЗ $ \Lrarrow $
+    $ \exists $ вектор из набора равный линейной комбинации остальных.
+    \end{theorem}
+
+    \begin{proof}
+    $ \exists \alpha_1, \alpha_2 \dots > 0:
+    \alpha_1 \vec{a}_1 + \dots = \vec{0} $, тогда
+    $ \vec{a}_1 =
+    - \frac{\alpha_2}{\alpha_1} \vec{a_2}
+    - \frac{\alpha_3}{\alpha_1} \vec{a_3}
+    \dots $.
+
+    Там еще как-то в обратную было.
+    \end{proof}
+
+    \begin{statement}
+    Система из одного вектора - ЛЗ $ \Lrarrow $ он нулевой.
+    \end{statement}
+
+    \begin{statement}
+    Система из 2 векторов ЛЗ $ \Lrarrow $ они колониарны.
+    \end{statement}
+
+    \begin{statement}
+    Система из 3 векторов ЛЗ $ \Lrarrow $ они компланарны.
+    \end{statement}
+
+    \begin{statement}
+    Система из 4 векторов ЛЗ всегда.
+    \end{statement}
+
+    \begin{proof}
+    $ \vec{a}, \vec{b}, \vec{c} $ - компланарны
+    \begin{enumerate}
+        \item $ \vec{a} + \vec{b} $ - колониарны $ \Lrarrow $ они лз.
+        \item $ \vec{a} + \vec{b} $ - неколониарны $ \Rarrow \quad
+            \exists \alpha, \beta: \alpha \vec{a} + \beta \vec{b} = \vec{c} $ - ЛЗ.
+    \end{enumerate}
+
+    В обратку наоборот.
+    \end{proof}
+\end{document}

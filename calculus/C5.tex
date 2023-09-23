@@ -1,0 +1,413 @@
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Th}
+\newtheorem*{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{lemma}{Lem}
+\newtheorem*{lemma_}{Lem}
+\newtheorem*{note}{Nt}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+
+\newcommand{\oR}{\overline{\mathbb R}}
+\newcommand{\hR}{\hat{\mathbb R}}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Тюленев Александр Иванович\\(Конспектировал Иван-Чай)}
+	\date{5 лекция}
+	\title{Введение в математический анализ}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+    \section{Предельный переход в неравенство}
+
+    \begin{lemma}
+        Пусть $ A, B \in \oR $. Пусть $ \lim_{n \to \infty} x_n = A $,
+        $ \lim_{n \to \infty} y_n = B $, $ A < B $
+
+        Тогда $ \exists N \in \N: \quad \forall n \geq N \hrarrow x_n < y_n $
+        % Тогда $ \exists \eps^* > 0: U_{\eps^*}(A) \cap U_{\eps^*}(B) \neq \varnothing $
+    \end{lemma}
+
+    \begin{proof}
+        \[
+        \exists \eps^* > 0: U_{\eps^*}(A) \cap U_{\eps^*}(B) \neq \varnothing
+        .\] \[
+        A < B \Rarrow
+        \forall x \in U_{\eps^*}(A), \forall y \in U_{\eps^*}(B) \hrarrow x < y.
+        .\] \[
+        \forall \eps > 0 \quad \exists N_1 \in \N(\eps)
+        \quad \forall n \geq N_1 \hrarrow x_n \in U_{\eps}(A)
+        .\] \[
+        \forall \eps > 0 \quad \exists N_2 \in \N(\eps)
+        \quad \forall n \geq N_2 \hrarrow y_n \in U_{\eps}(A)
+        .\] \[
+        N := max\{N_1, N_2 \}: \forall n \geq N \hrarrow x_n \in U_{\eps*}(A) \land
+        y_n \in  U_{\eps^*}(B) \Rarrow
+        .\] \[
+        x_n < y_n
+        .\]
+    \end{proof}
+
+    \begin{theorem}[Теорема о предельном переходе в неравенство]
+        Пусть
+        \begin{cases}
+            \exists \lim_{n \to \infty} x_n = A \in \oR \\
+            \exists \lim_{n \to \infty} y_n = B \in \oR \\
+        \end{cases},
+        пусть $ \exists N \in \N: x_n \leq y_n \quad \forall n \geq N $,
+        Тогда $ A \geq B $
+    \end{theorem}
+
+    \begin{proof}
+        Предположим, что $ A > B $. По только что доказаной лемме
+        $ \exists N^*: \forall n \geq N^* \hrarrow x_n > y_n $
+        \[
+            \widetilde{N} := max\{N, N^*\}: \quad \forall n \geq  \widetilde{N} \hrarrow
+            \begin{cases}
+                x_n \leq y_n \\
+                x_n > y_n
+            \end{cases}
+        \]
+        Противоречие.
+    \end{proof}
+
+    \begin{statement}
+        Пусть $ \exists N \in \N: x_n < y_n \quad \forall n \geq N $, \newline
+        $ x_n \to A, n \to \infty $, \newline
+        $ y_n \to B, n \to \infty $. \newline
+        Тогда не обязательно $ A < B $.
+    \end{statement}
+
+    \begin{proof}[Контрпример]
+        \[
+            y_n = \frac{1}{n}
+        .\] \[
+            x_n = -\frac{1}{n}
+        .\]
+    \end{proof}
+
+    \begin{note}
+        Предельный переход может портить строгие неравенства и превращать их в нестрогие.
+    \end{note}
+
+    \begin{corollary}
+        \left.
+        \begin{aligned}
+            x_n \geq a, a \in \R \\
+            \exists \lim_{n \to \infty} x_n = A \in \oR \\
+        \end{aligned}
+        \right\}
+        \Rarrow A \geq a.
+    \end{corollary}
+
+    \begin{proof}
+        Положим $ y_n = a $. $ \forall n \in \N $
+        применим предыдущее утверждение(теорему о предельном переходе в неравенство).
+    \end{proof}
+
+    \section{Теорема о двух милиционерах}
+
+    \begin{theorem_}[Теорема о двух милиционерах $ \Lrarrow $ теорема о трех последовательностях]
+        Пусть $
+        \left\{a_n \right\}_{n = 1}^{\infty},
+        \left\{b_n \right\}_{n = 1}^{\infty},
+        \left\{c_n \right\}_{n = 1}^{\infty}
+        $ - числовые последовательности.
+        Пусть $
+        \exists
+        \lim_{n \to \infty} a_n =
+        \lim_{n \to \infty} b_n =
+        c \in \R
+        $.
+        Пусть $
+        \exists N \in \N: \forall n \geq N \hrarrow
+        a_n \leq c_n \leq b_n
+        $.
+        Тогда $ \exists \lim_{n \to \infty} c_n = c $.
+    \end{theorem_}
+
+    \begin{proof}
+        \[
+        \lim_{n \to \infty} a_n = c \Lrarrow
+        \forall \eps > 0 \quad \exists N_1 : \forall n \geq N \hrarrow a_n \in U_{\eps}(C)
+        .\]
+        \[
+        \lim_{n \to \infty} b_n = c \Lrarrow
+        \forall \eps > 0 \quad \exists N_2 : \forall n \geq N \hrarrow b_n \in U_{\eps}(C)
+        .\]
+        \[
+        \forall \eps > 0 \qaud \exists N = max \{ N_1, N_2, N \} \hrarrow
+        \begin{cases}
+            a_n \in U_{\eps}(c) \\
+            b_n \in U_{\eps}(c) \\
+        \end{cases}
+        \Rarrow
+        \]
+        \[
+        c_n \in U_{\eps}(c) \quad \forall n \geq N \Rarrow
+        \exists \lim_{n \to \infty} c_n = c
+        .\]
+    \end{proof}
+
+    \begin{theorem}
+        Пусть $ \exists \lim_{n \to \infty} x_n = +\infty $ и
+        $ \exists N \in \N: \forall n \geq N \hrarrow y_n \geq x_n $.
+        Тогда $ \exists \lim_{n \to \infty} y_n = +\infty $.
+        Аналогично для $ -\infty $.
+    \end{theorem}
+
+    \begin{proof}
+        \[
+        \forall \eps > 0 \quad \exists N(\eps) \in \N:
+        \quad \forall n \geq N(\eps) \hrarrow x_n > \frac{1}{\eps}.
+        \] \[
+        \forall \eps > 0 \quad \exists  \overline{N}(\eps) = max \{ N(\eps), N \} \in \N:
+        \] \[
+        \forall n \geq \overline{N}(\eps) \hrarrow y_n \geq x_n > \frac{1}{\eps} \Rarrow
+        \] \[
+        \lim_{n \to \infty} y_n = +\infty.
+        \]
+    \end{proof}
+
+    \section{Пределы монотонных последовательностей}
+
+    \begin{definition}
+        Последовательность $ \left\{x_n \right\}_{n = 1}^{\infty} $ называется нестрого
+        возрастающей(нестрого убывающей), если
+        $ \forall n \in \N \hrarrow x_{n+1} \geq x_n (x_{n+1} \leq x_n) $.
+    \end{definition}
+
+    \begin{definition}
+        Последовательность $ \left\{x_n \right\}_{n = 1}^{\infty} $ называется строго
+        возрастающей(строго убывающей), если
+        $ \forall n \in \N \hrarrow x_{n+1} > x_n (x_{n+1} < x_n) $.
+    \end{definition}
+
+    \begin{definition}
+        Последовательность $ \left\{x_n \right\}_{n = 1}^{\infty} $ называется монотонной,
+        если она нестрого убывающая или нестрого возрастающая.
+    \end{definition}
+
+    \begin{theorem_}[О пределе монотонной последовательности]
+        Любая монотонная последовательность имеет предел в $ \oR $.
+
+        Если $ \left\{x_n \right\}_{n = 1}^{\infty} $ нестрого возрастает, то
+        $ \exists \lim_{n \to \infty} x_n = \sup \{ x_n \} $.
+
+        Если $ \left\{x_n \right\}_{n = 1}^{\infty} $ нестрого убывает, то
+        $ \exists \lim_{n \to \infty} x_n = \inf \{ x_n \} $.
+    \end{theorem_}
+
+    \begin{proof}[Докажем для нестрого возрастающей]
+        \[ M = \sup{A} \Lrarrow
+        \begin{cases}
+            a \leq M \quad \forall a \in A \\
+            \forall M' < M \quad \exists a \in A: M' < a \leq M \\
+        \end{cases}
+        \]
+        \[
+        \forall \eps > 0 \quad \exists a \in U_{\eps}(M) \cap A
+        .\]
+        \[
+            M = \sup{x_n} \Rarrow
+            \forall \eps > 0 \quad \exists N(\eps): X_{N(\eps)} \in U_{\eps}(M)
+        .\]
+
+        \begin{center}
+            $  \{ x_n \} $ - возростает.
+        \end{center}
+        \[ \Downarrow \] \[
+        x_n \geq x_{N(\eps)} \quad \forall n \geq N(\eps).
+        \] \[ \Downarrow \] \[
+        x_n \in U_{\eps}(M) \quad \forall n \geq N(\eps). \quad (x_n \leq M )
+        \] \[ \Downarrow \] \[
+        \forall \eps > 0 \quad \exists N(\eps) \in \N: \forall n \geq N(\eps) \hrarrow
+        x_n \in U_{\eps}(M).
+        \] \[ \Downarrow \] \[
+            M = \lim_{n \to \infty} x_n.
+        \]
+    \end{proof}
+
+    \section{Подпоследовательности и частичные пределы}
+
+    \begin{definition}
+        Пусть дана числовая последовательность $ \left\{x_n \right\}_{n = 1}^{\infty} $.
+        Последовательность $ \left\{y_k \right\}_{k = 1}^{\infty} $ называется
+        подпоследовательностью последовательности $ \left\{x_n \right\}_{n = 1}^{\infty} $,
+        если существует строго возрастающая последовательность
+        $ \left\{n_k \right\}_{k = 1}^{\infty} \subseteq \N:
+        y_k = x_{n_k} \forall k \in \N $.
+    \end{definition}
+
+    \begin{definition}
+        Будем говорить, что $ A \in \oR $ - частичный предел последовательности
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $, если $ \exists \{ x_{n_k} \} $ -
+        подпоследовательность $ \{ x_n \} $:
+        \lim_{k \to \infty} x_{n_k} = A $
+    \end{definition}
+
+    \begin{theorem_}[Критерий частичного предела]
+        Пусть $ \left\{x_n \right\}_{n = 1}^{\infty} $ - числовая последовательность.
+        Пусть $ A \in \oR $
+        Следущие условия эквивалентны.
+        \begin{enumerate}
+            \item $ A $ - ч.п. $ \left\{x_n \right\}_{n = 1}^{\infty} $.
+            \item $ \forall \eps > 0 $ в $ U_{\eps}(A) $ содержатся значения
+                бесконечного количества элементов последовательности
+                $ \left\{x_n \right\}_{n = 1}^{\infty} $.
+            \item $ \forall \eps > 0 \quad \forall N \in \N \quad \exists n \geq N:
+                x_n \in U_{\eps}(A) $.
+        \end{enumerate}
+    \end{theorem_}
+
+    \begin{proof}[$ (1) \Rarrow (2) $]
+        Пусть $ A $ - ч.п. $ \Rarrow \exists \left\{n_k \right\}_{k = 1}^{\infty} \subset \N $,
+        возрастающая: $ \lim_{k \to \infty} x_{n_k} = A \Lrarrow
+        \forall \eps > 0 \quad \exists K(\eps) \in \N: \forall k \geq K(\eps) \hrarrow
+        x_{n_k} \in U_{\eps}(a) $.
+
+        Т.к. $ \exists  $ бесконечно много чисел $ k \in \N: k \geq K(\eps) $, в
+        $  U_{\eps}(A) $ содержатся значения бесконечного количества элементов
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $.
+    \end{proof}
+
+    \begin{proof}[$ (2) \Rarrow (3) $]
+        Фиксируем произвольный $ \eps > 0 \Rarrow $ в $ U_{\eps}(A) $ содержатся
+        значения бесконечного количества элементов последовательности
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $.
+
+        Пусть $ I(\eps) $ - это те натуральные индексы, что $ x_n \in U_{\eps}(A) \quad
+        \forall n \in I(\eps) $. Тогда
+        \[
+            \forall N \in \N \quad \exists n \in I(\eps): n \geq N
+        .\]
+        Но т.к. $ \eps $ было выбрано произвольно
+        \[
+            \forall \eps > 0 \quad \forall N \in \N: x_n \in U_{\eps}(A)
+        .\]
+    \end{proof}
+
+    \begin{proof}[$ (3) \Rarrow (1) $]
+        Построим подпоследовательность $ \left\{ x_{n_k} \right\}_{k = 1}^{\infty} :
+        \exists \lim_{k \to \infty} x_{n_k} = A $.
+        \[
+            n_1 = 1
+        .\]
+        Поскольку при $ \eps = \frac{1}{2} $ и $ N \geq 1 + n_1 \quad \exists n \geq 1 + n_1:
+        x_n \in U_{\frac{1}{2} }(A) $ если построенны $ n_1 < n_2 < \dots < n_k $
+        $ x_{n_i} \in U_{\frac{1}{i}}(A) $.
+
+        \[
+            n_{k + 1} = n\left(\frac{1}{k + 1}, n_k + 1\right).
+        \] \[ \Downarrow \] \[
+            x_{n_{k+1}} \in U_{\frac{1}{k+1}}(A).
+        \] \[ \Downarrow \] \[
+            \forall k \in \N \quad \exists n_k = n\left(\frac{1}{k}, n_{k-1}\right) \in \N \quad
+            x_{n_k} \in U_{\frac{1}{k}}(A).
+        \] \[ \Downarrow \] \[
+            \forall k \in \N \quad \exists n_k \in \N:
+            \forall j \geq k \hrarrow x_{n_j} \in U_{\frac{1}{k}}(A).
+        \] \[ \Downarrow \] \[
+            \forall \eps > 0 \quad \exists K(\eps) = \left[ \frac{1}{\eps} \right] + 1:
+            \forall k \geq K(\eps) \hrarrow x_{n_k} \in U_{\eps}(A).
+        \]
+    \end{proof}
+
+    \section{Теорема Больцано - Вeйерштрасса}
+
+    \begin{theorem_}[Теорема Больцано - Вейерштрасса]
+        Пусть $ \left\{x_n \right\}_{n = 1}^{\infty} $ - ограниченная числовая последовательность.
+        $ \exists $ хотя бы один конечный частичный предел
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $.
+    \end{theorem_}
+
+    \begin{proof}
+        Поскольку $ \left\{x_n \right\}_{n = 1}^{\infty} $ - ограничена
+        $ \exists M \geq 0: | x_n | \leq M $.
+
+        Далее считаем $ M > 0 $, т.к. при $ M = 0 $ доказываемое утверждение очевидно.
+
+        Пусть $ I^1 = \left[ -M, M \right] $.
+        Выберим как $ I^2 $ половину отрезка $ I^1 $, содержащую значения бесконечного
+        количества элементов $ \left\{x_n \right\}_{n = 1}^{\infty} $. Такая найдется,
+        иначе в $ I^1 $ содержится конечное число значений элементов последовательности.
+
+        Предположим мы построили последовательность $ I^1 \subset I^2 \subset \dots \subset I^k: $
+        $ I^j $ содержит значения бесконечного количества элементов последовательности
+        $ \forall j \leq k $.
+        Разделим $ I^k $ на два конгруентных отрезка и выберем как $ I^{k+1} $ половину,
+        содержащую значения бесконечного количества элементов
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $. (Такая найдется по указаным выше причинам.)
+
+        В итоге получим бесконечную последовательность вложенных отрезков
+        $ I^1 \subset I^2 \subset \dots \subset I^k $, которая еще и стягивающаяся, т.к.
+        $ \left| I^k \right| = \frac{|I^{k - 1}|}{2^{k-1}} $. Из этого
+        $ \exists x^* = \cap_{k=1}^\infty I^k $.
+
+        Покажем, что $ \forall \eps > 0 $ в $ U_{\eps}(x^*) $ содержатся значения
+        бесконечного количества элементов последовательности
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $,
+        чтобы доказать, что
+        $ x^* $ - ч.п..
+
+        Действительно, из определения предела и из того, что
+        $ x^* \in I^k \quad \forall k \in \N \Rarrow
+        \exists K(\eps): x^* \in I^{K(\eps)} \subset U_{\eps}(x^*) \Rarrow $
+        по построению получаем, что в $ I^{k(\eps)} $ содержится бесконечное количество
+        значений элементов последовательности $ \left\{x_n \right\}_{n = 1}^{\infty} $.
+    \end{proof}
+\end{document}

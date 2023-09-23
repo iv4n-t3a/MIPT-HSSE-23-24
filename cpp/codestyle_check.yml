@@ -1,0 +1,29 @@
+stages:
+  - test
+  - build
+  - deploy
+
+.codestyle-check:
+  stage: test
+  image: yaishenka/docker-codestyle-checker:latest
+  allow_failure: false
+  script:
+    - find . -name "*.cpp" -o -name "*.hpp" -o -name "*.h" -type f | xargs clang-tidy -extra-arg=-std=c++20 --quiet
+    - |-
+      if [[ ! $? -eq 0 ]]
+      then
+        echo "Проверка clang-tidy не пройдена"
+        exit 1
+      fi
+    - echo "Clang-tidy done"
+    - echo "Begin clang-format"
+    - find . -name "*.cpp" -o -name "*.hpp" -o -name "*.h" -type f | xargs clang-format -i
+    - find . -name "*.cpp" -o -name "*.hpp" -o -name "*.h" -type f | xargs git diff --ignore-submodules > diff
+    - |-
+      if [[ -s diff ]]
+      then
+        echo "Проверка clang-format не пройдена"
+        find . -name "*.cpp" -o -name "*.hpp" -o -name "*.h" -type f | xargs git diff --ignore-submodules --color
+        exit 1
+      fi
+    - echo "Clang-format done"

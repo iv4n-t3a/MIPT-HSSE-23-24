@@ -1,0 +1,146 @@
+\documentclass[a6paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\theoremstyle{plain}
+
+\newtheorem*{theorem}{Th}
+\newtheorem{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+\newcommand{\larrow}{\Leftarrow}
+\newcommand{\rarrow}{\Rightarrow}
+\newcommand{\lrarrow}{\Leftrightarrow}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Зухба Анастасия Викторовна\\(Конспектировал Иван-Чай)}
+	\date{01.09.2023}
+	\title{Дискретная математика}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\section{Основные основы}
+
+	Граф - это пара множеств
+	$ G(V, E) $
+	$ V $ - множество, элементы которого называют вершинами
+	$ E $ - множество пар вершин $ (U, U'): U, U' \in V $
+
+	Вершина и ребро инцидентны, если вершина является одним из концов ребра.
+
+	\sout{Петлей называется ребро вида $ (U, U) $.}
+
+	\sout{Кратными называются ребра соответствующие одной и той же паре $ (U, U') $.}
+
+	Петли и кратные ребра в нашем курсе использоваться не будут.
+
+	Степенью вершины $ U $неориентированного гарафа $ G(V, E) $ называется
+	количество ребер инцидентных $ U $.
+
+	\[ % \[
+		\deg{U} = \left| \left\{ (U, U'): (U, U') \in E \right\} \right|
+	\] % \]
+
+	Смежные вершины - это вершины с общим ребром.
+
+	Смежные ребра - это ребра с общей вершиной.
+
+	\begin{theorem}
+	Лемма о рукопожатиях:
+
+	\[ % \[
+	\sum_{u \in V} \deg{U} = 2 \left| E \right|
+	\] % \]
+	\end{theorem}
+
+	\section{Хранение графа в памяти}
+
+	\subsection{Матрица смежности}
+
+	Есть матрица $ A $ размером $ \left| V \right| * \left| V \right| $, и
+	$ a_{ij} = 1 $, если $ (i, j) \in E $, иначе $ a_{ij} = 0 $.
+
+	\subsection{Матрица инцидентности}
+
+	Есть матрица $ A $ размера $ \left| V \right| * \left| E \right| $
+	и там каждый столбец описывает ребро тип.
+
+	\subsection{Список смежности}
+
+	ну там и так все знают, как и предыдущие два пункта.
+
+	\section{Маршруты, пути, цепи, связность}
+
+	Маршрут - конечная последовательность вершин такая, что
+	$ (U_j, U_{j+1}) \in E \quad \forall j \in \overline{1, \left|V\right|-1} $.
+
+	Цепь - маршрут, все ребра которого различны.
+
+	Путь в нашем курсе - синоним цепи.
+
+	Простой путь - путь, все вершины которого (кроме, возможно, начала и конца) различны.
+
+	Замкнутый маршрут/путь/простой путь, это когда совпадают начало и конец.
+
+	Цикл - замкнутый путь.
+
+	Длиной маршрута называется число ребер в нем с учетом возможных повторных вхождений.
+
+	Вершины $ U $ и $ V $ называют связными, если существует маршрут
+	с началом в $ U $ и концом в $ U $.
+
+	Граф называют связным, если между любыми двумя его вершинами существует путь.
+
+	\begin{statement}
+	\exists $ маршрут из $ U $ в $ V $ \rarrow  \exists $ путь и простой путь из $ U $ в $ V $.
+	\end{statement}
+
+	\begin{proof}
+		Пусть $ \left( U_1, U_2, U_3 \dots U_m \right) $ - маршрут.
+
+		Предположим все вершины различны, тогда этот маршрут является простым путем.
+
+		Предположим маршрут содержит повторение вершины $ U_i $
+
+
+		Пусть $ U_i = U_j $ и
+
+	\begin{allign}
+		\left( U_1, U_2, U_3 \dots U_{i-2}, U_{i-1} \right) = a
+
+		\left( U_{i+1}, U_{i+2}, U_{i+3} \dots U_{j-2}, U_{j-1} \right) = b
+
+		\left( U_{j+1}, U_{j+2}, U_{j+3} \dots U_{k-1}, U_{k} \right) = c
+	\end{allign}
+
+	тогда $ a U_i b U_j c $ - исходный маршрут, но тогда $ a U_i c $ - тоже маршрут.
+
+	\end{proof}
+\end{document}
