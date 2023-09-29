@@ -1,4 +1,4 @@
-\documentclass[a6paper, 10pt]{article}
+\documentclass[a5paper, 10pt]{article}
 
 \usepackage[english, russian]{babel}
 \usepackage[T2A]{fontenc}
@@ -96,10 +96,10 @@
     Пример $ a < b $, тогда $ \left[ a, b \right]  $ - замкнутое множество
 
     \begin{proof}
-        Покажем, что $ \forall c \nin [a, b] $ не является точкой прикосновения.
+        Покажем, что $ \forall c \not \in [a, b] $ не является точкой прикосновения.
 
         \[
-            \eps* = mn \left\{ \frac{ | a - b |}{2}, \frac{ | a - c |}{2} \right\}
+            \eps* =min \left\{ \frac{ | a - b |}{2}, \frac{ | a - c |}{2} \right\}
         .\]
     \end{proof}
 
@@ -127,7 +127,7 @@
 
     \begin{proof}
         \[
-        \eps = mn \left\{ \frac{\left| x - a \right| }{2}, \frac{\left| b - x \right| }{2} \right\}
+        \eps =min \left\{ \frac{\left| x - a \right| }{2}, \frac{\left| b - x \right| }{2} \right\}
         \]
     \end{proof}
 
@@ -135,12 +135,13 @@
 
     \begin{proof}
         \[
-            a \nin int (a, b] \\
+            a \not \in int (a, b]
+        \] \[
             b \in int (a, b]
         .\]
     \end{proof}
 
-    Пример
+    Пример:
     $ cl \Q = \R(1) $,
     $ int \Q = \varnothing(2) $.
 
@@ -153,7 +154,7 @@
     \end{proof}
 
     \begin{proof}[Докажем, что любой интервал содержит рациональную точку]
-        $ x =  $
+        \textbf{Это доказательство пока в разработке}
     \end{proof}
 
     \begin{proof}[Докажем, что любой интервал содержит иррациональную точку]
@@ -173,11 +174,9 @@
     \end{definition}
 
     \begin{statement}
-        x - точка прикосновения $ \Lrarrow  $
-        \left[
-        \begin{aligned}
-            x - изолированая точка \\
-            x - предельная точка
+        $ x $ - точка прикосновения $ \Lrarrow  $
+            $ x $ - изолированая точка $ \lor $
+            $ x $ - предельная точка
         \end{aligned}
         \right.
     \end{statement}
@@ -187,7 +186,7 @@
     \end{proof}
 
     \begin{proof}[$ \Rarrow $]
-        Пусть x - точка прикосновения $ \Rarrow \forall \eps > 0 U_{\eps}(x) \cap E \neq
+        Пусть x - точка прикосновения $ \Rarrow \forall \eps > 0 \quad U_{\eps}(x) \cap E \neq
         \varnothing $,
         либо $ \forall \eps > 0 \quad U_{\eps}(x) \cap E $ содержит не только \{x\},
         но тогда она предельная.
@@ -232,17 +231,16 @@
         Т.к. $ \left\{x_n \right\}_{n = 1}^{\infty} $ - ограничена, то по т. Б-В
         $ \exists $ подоследовательность, которая сходится куда-то
 
-        Пусть $ x* = \lim_{n \to \infty} x_n $, yj njulf ч* - частичный предел R, а
-        k - замкнуто $ \Rarrow x* \in K $
+        Пусть $ x^* = \lim_{n \to \infty} x_n $, но тогда $ x^* $
+        - частичный предел $ R $, а
+        $ k $ - замкнуто $ \Rarrow x^* \in K $
     \end{proof}
 
     \begin{proof}[ $ \Rarrow $]
-        Пусть $ k $ - компактна, докажем, что она ограничена и замкнута.
-
-        Предположим, что K - неограничена $ \Rarrow   \quad \forall j \in N \quad
+        Предположим, что K - неограничено $ \Rarrow   \quad \forall j \in N \quad
         \exists x_j \in K: |x_j| > j \Rarrow \exists \left\{ x_j \right\} \subset K
         \lim_{j \to \infty} \left| x_j \right| = +\infty $ - противоречие
-        $ \Rarrow  $ - л = огр.
+        $ \Rarrow  $ x = ограничена
     \end{proof}
 
     \begin{definition}
