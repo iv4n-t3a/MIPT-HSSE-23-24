@@ -1,0 +1,223 @@
+% /*
+%  * ----------------------------------------------------------------------------
+%  * "THE BEER-WARE LICENSE" (Revision 42):
+%  * @iv4n-t3a wrote this file.  As long as you retain this notice you
+%  * can do whatever you want with this stuff. If we meet some day, and you think
+%  * this stuff is worth it, you can buy me a beer in return.   Иван-Чай
+%  * ----------------------------------------------------------------------------
+%  */
+
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Th}
+\newtheorem*{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{lemma}{Lem}
+\newtheorem*{lemma_}{Lem}
+\newtheorem*{note}{Nt}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+
+\newcommand{\oR}{\overline{\mathbb R}}
+\newcommand{\hR}{\hat{\mathbb R}}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Тюленев Александр Иванович\\(Конспектировал Иван-Чай)}
+	\date{6 лекция}
+	\title{Введение в математический анализ}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+    \section{Частичные пределы}
+
+    \begin{theorem}
+        Если $ \left\{x_n \right\}_{n = 1}^{\infty} $ - неограничена сверху, то
+        $ + \infty $ является ее частичным пределом.
+
+        Если $ \left\{x_n \right\}_{n = 1}^{\infty} $ - неограничена снизу, то
+        $ - \infty $ является ее частичным пределом.
+    \end{theorem}
+
+    \begin{proof}[Докажем для случая ограниченности сверху]
+        Заметим, что если $ \left\{x_n \right\}_{n = 1}^{\infty} $ неограничена сверху, то
+        $ \forall n \in \N $ отбросим первые $ N $ элементов и снова получим последовательность
+        неограниченную сверху. Т.е. рассмотрим $ \left\{y_n \right\}_{n = 1}^{\infty} =
+        \left\{ x_{n + N} \right\}_{n = 1}^{\infty} $.
+        \[
+            \forall \eps > 0 \quad \exists n \in \N: y_n > \frac{1}{\eps}
+        .\] \[ \Downarrow \] \[
+            \forall N \in \N, \forall \eps > 0 \quad \exists k > N: x_k > \frac{1}{eps}
+        .\]
+        $ +\infty $ - частичный предел $ \left\{x_n \right\}_{n = 1}^{\infty} $ по критерию частичного предела.
+    \end{proof}
+
+    \begin{theorem_}[Обобщенная теорема Больцаро-Вейерштрасса]
+        Любая числовая последовательность $ \left\{x_n \right\}_{n = 1}^{\infty} $
+        имеет хотя бы один частичный предел в $ \oR $.
+    \end{theorem_}
+
+    \begin{definition}
+        $ PL\left( \left\{x_n \right\}_{n = 1}^{\infty} \right) := \{ L \in \oR: L - $ частичный предел $ \} $
+    \end{definition}
+
+    \begin{definition}
+        Пусть $ A \subset \oR $.
+        $ M = \sup A \Lrarrow $
+        \begin{cases}
+            a \leq M, \forall a \in A \\
+            \forall M' < M \quad \exists x \in A: M' < a \leq M.
+        \end{cases}
+    \end{definition}
+
+    \begin{definition}
+        Пусть $ A \subset \oR $.
+        $ m = \sup A \Lrarrow $
+        \begin{cases}
+            a \geq m, \forall a \in A \\
+            \forall m' > m \quad \exists x \in A: m \leq a < m'.
+        \end{cases}
+    \end{definition}
+
+    \section{Верхний и нижний частичный предел}
+
+    \begin{definition}
+        Верхний предел \[ \overline{\lim}_{n \to \infty} x_n = \sup PL(\left\{x_n \right\}_{n = 1}^{\infty}). \]
+    \end{definition}
+
+    \begin{definition}
+        Нижний предел \[ \underline{\lim}_{n \to \infty} x_n = \inf PL(\left\{x_n \right\}_{n = 1}^{\infty}). \]
+    \end{definition}
+
+    \begin{lemma}
+        Пусть $ \exists \lim_{n \to \infty} x_n = A \in \oR $. Тогда $ PL(x_n) = {A} $.
+    \end{lemma}
+
+    \begin{proof}
+        \[
+            \forall \eps > 0 \quad \exists N(\eps) \in \N: \forall n \geq N(\eps) \hrarrow x_n \in U_{\eps}(A)
+        .\]
+
+        Возьмем произвольную подпоследовательность $  \left\{ x_{n_k} \right\}_{k = 1}^{\infty} $ последовательности
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $ и покажем, что $ \lim_{k \to \infty} x_{n_k} = A $.
+
+        \[
+            n_k \geq k \Rarrow \forall \eps > 0 \quad \exists K(\eps) = N(\eps): \forall k \geq K(\eps) \hrarrow x_{n_k} \in U_{\eps}(A)
+        .\]
+    \end{proof}
+
+    \begin{theorem}
+        Пусть $ \left\{x_n \right\}_{n = 1}^{\infty} $ - произвольная числовая последовательность, тогда
+        \[
+            \underline{\lim}_{n \to \infty} \in PL(\left\{x_n \right\}_{n = 1}^{\infty})
+        .\] \[
+            \overline{\lim}_{n \to \infty} \in PL(\left\{x_n \right\}_{n = 1}^{\infty})
+        .\]
+    \end{theorem}
+
+    \begin{proof}[Докажем для верхнего предела]
+        Обозначим $ M = \sup PL(\left\{x_n \right\}_{n = 1}^{\infty}) $
+
+        Из определения $ \sup $
+        \[
+            \forall \eps > 0 \hrarrow U_{\frac{\eps}{2}} \cap PL(\left\{x_n \right\}_{n = 1}^{\infty}) \neq \varnothing
+        .\] \[ \Downarrow \] \[
+            \exists c \in PL(\left\{x_n \right\}_{n = 1}^{\infty}): c \in U_{\frac{\eps}{2}}(M)
+        .\]
+
+        По критерию частичного предела в $ U_{\frac{\eps}{2}}(c) $ содержится значения бесконечного количества элементов
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $.
+
+        \[
+            c \in U_{\frac{\eps}{2}} \Rarrow U_{\frac{\eps}{2}} \subset U_{\eps}(M)
+        .\]
+
+        Из этого $ U_{\eps}(M) $ содержит значения бесконечного количества значений элементов
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $, но $ \eps $ был выбран произвольно. $ \Rarrow $
+        $ M $ - частичный предел.
+    \end{proof}
+
+    \begin{theorem}
+        Пусть $ \left\{x_n \right\}_{n = 1}^{\infty} $ - числовая последовательность, тогда
+
+        \[
+            \overline{\lim}_{n \to \infty} x_n = \inf_{n \in \N}\left(\sup_{k \geq n} x_k\right)
+        .\] \[
+            \underline{\lim}_{n \to \infty} x_n = \sup_{n \in \N}\left(\inf_{k \geq n} x_k\right)
+        .\]
+    \end{theorem}
+
+    \begin{proof}[Докажем для верхнего предела]
+        \[
+            \forall n \in \N \quad y_n = \sup_{k \geq n} x_k
+        .\]
+
+        Заметим, что $ y_{n+1} \leq y_n \quad \forall n \in \N $
+
+        Если $ y_n = + \infty $ хотя бы при одном $ n \in \N $, то $ y_n = +\infty \quad \forall n \in \N $.
+        Получается монотонная последовательность, которая по теореме Вейерштрасса имеет предел равный ее $ \inf $.
+
+        Докажем, что $ \displaystyle \overline{\lim}_{n \to \infty} x_n \leq \inf_{n \in \N} \sup_{k \geq n} x_n $,
+        для этого докажем, что $ \displaystyle c \leq \inf_{n \in \N} \sup_{k \geq n} x_n $, если c - частичный предел.
+
+        Пусть $ \left\{ x_{n_k} \right\}_{k = 1}^{\infty} $ - подпоследовательность последовательности
+        $  \left\{x_n \right\}_{n = 1}^{\infty}: \newline
+        \lim\limits_{k \to \infty} x_{n_k} = c $
+
+        Если $ y_n \in \R \quad \forall n \in \N
+    \end{proof}
+
+    \textbf{Дальнейшая часть лекции пока в разработке, довольствуемся тем, что имеем}
+\end{document}
