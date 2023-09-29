@@ -1,0 +1,235 @@
+% /*
+%  * ----------------------------------------------------------------------------
+%  * "THE BEER-WARE LICENSE" (Revision 42):
+%  * @iv4n-t3a wrote this file.  As long as you retain this notice you
+%  * can do whatever you want with this stuff. If we meet some day, and you think
+%  * this stuff is worth it, you can buy me a beer in return.   Иван-Чай
+%  * ----------------------------------------------------------------------------
+%  */
+
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Th}
+\newtheorem*{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{lemma}{Lem}
+\newtheorem*{lemma_}{Lem}
+\newtheorem*{note}{Nt}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+
+\newcommand{\oR}{\overline{\mathbb R}}
+\newcommand{\hR}{\hat{\mathbb R}}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Зухба Анастасия Викторовна\\(Конспектировал Иван-Чай)}
+	\date{5 лекция}
+	\title{Дискретная математика}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+    \section{Сочетания}
+
+    $ C_n^k $ или $ \big(^n_k\big) $ - сочетания ( выбор без учета порядка)
+    $ k $ элементов из $ n $ различных.
+
+    \[
+        (1 + x)^n = (1 + x_1 )(1 + x_2 )(1 + x_3 ) \dots = + x_{j_1 } x_{j_2 } x_{j_3 } x_{j_4} \dots
+
+    .\]
+
+    Треугольник Паскаля
+    % Не бейти
+    \[
+        1 \quad 1
+    \]\[
+        1 \quad 2 \quad 1
+    \]\[
+        1 \quad 3 \quad 3 \quad 1
+    .\]
+    \[
+        C^0_1 \quad C^1_1
+    \]\[
+        C^0_2 \quad C^1_2 \quad C^2_2
+    \]\[
+        C^0_3 \quad C^1_3 \quad C^2_3 \quad C^3_3
+    .\]
+
+    \begin{statement}
+        C_{t+1}^k = C_t^{k - 1} + C_t^k.
+    \end{statement}
+
+    \begin{proof}[Комбинаторное доказательство]
+        Выделим некий элемент и разделим все сочетания из t + 1 по k на содержащие его и нет.
+    \end{proof}
+
+    \begin{proof}[Алгеброическое доказательство]
+        \[ \frac{(t+1)!}{k!(t + 1 - k)!} =  \frac{1}{(k-1)! (t - k + 1)!} +  \frac{t!}{k!(t-k)!} \]
+    \end{proof}
+
+    \begin{proof}[Среднее доказательство]
+        \[
+            (1 - x )^{t + 1} = (x + 1)(x + 1)^t
+        .\]
+    \end{proof}
+
+    \begin{proof}[Еще одно доказательство]
+    Повернем треугольник паскаля
+
+    \noindent
+    $ 1 $ \newline
+    $ 1 \quad 4 $ \newline
+    $ 1 \quad 3 \quad 6 $ \newline
+    $ 1 \quad 2 \quad 3 \quad 4 $ \newline
+    $ 1 \quad 1 \quad 1 \quad 1 \quad 1 $ \newline
+
+    Значение в каждой клетке равно количеству способов прийти в нее из нижнего левого угла
+    и $ C^n_{n + m} $
+    \end{proof}
+
+    \section{Сочетания с повторениями}
+
+    $ \overline{C_n^k} $ - сочетания (без учета порядка) с повторениями из $ n $ элементного множества.
+    $ \overline{C_n^k} = C _{n - 1 + k}^k $ - Доказательство в предыдущей лекции.
+
+    Решить в целых числах уравнение
+    \[
+        x_1 + x_2 + x_3 \dots + x_n = k
+    .\]
+    Количество решений $ \overline{ C_n^k } $
+
+    \[
+        (1 + x)^n =
+            C_n^0 x^0 +
+            C_n^1 x^1 +
+            \dots
+            C_n^n x^n
+    .\]
+    Продиффиренцируем
+    \[
+        n(1 + x)^{n-1} =
+            0 +
+            1 C_n^1 x^0 +
+            2 C_n^2 x^1 +
+            \dots
+            (k - 1) C_n^k x^{k - 1}
+            \dots
+            (n - 1) C_n^n x^{n - 1}
+    .\]
+    \[
+        n(1 + x)^{n-1} =
+            \sum_{k = 0}^{n} k C_n^k x^{k-1} \quad (*)
+    \]
+
+     \begin{statement}
+        \[
+            \sum_{k = 0}^{n} C_n^k = 2^n \quad (*, x = 1)
+        .\]
+    \end{statement}
+
+    \begin{statement}
+        \[
+            \sum_{k = 0}^{n} (-1)^k C_n^k = 0 \quad (*, x = -1)
+        .\]
+    \end{statement}
+
+    \begin{statement}
+        \[
+            \sum_{k = 0}^{n} = \frac{C_n^k}{k + 1}
+        .\]
+        (Для доказательства надо проинтегрировать бином ньютона).
+    \end{statement}
+
+    \section{Числа Фибоначчи}
+
+    \begin{definition}
+        \[
+            F_1 = F_2 = 1
+        .\]
+        \[
+            F_{n+2} = F_{n+1} + F_n
+        .\]
+    \end{definition}
+
+    Задача: Количество последовательностей из 0 и 1, не содержащая двух 0 подряд.
+
+    \noindent
+    $ P_1 = 2 = F_3 $ \newline
+    $ P_2 = 3 = F_4 $ \newline
+    $ P_{n+2} = P_n + P_{n+1} = F_{n+4} $ \newline
+    Из того, что аналогичную последовательность можно получить отбросив от текущей 1 или 10.
+
+    \begin{statement}
+        \[
+            F_n = \frac{1}{\sqrt 5}(q^n - q^{-n}), \quad q = \frac{1 + \sqrt 5}{2}.
+        .\]
+    \end{statement}
+
+    Задача: $ \sum = \left\{ a_1, a_2, a_3 \dots a_n \right\} $ - алфавит.
+    Введем ограничения на слова длины $ k $.
+
+    \begin{enumerate}
+        \item $ a_1 $ и $ a_2 $ обязательно присутствуют в слове.
+        \item $ a_3 $ присутствует на 3-м месте.
+        \item $ a_4, a_5 $ стоят рядом в указоном порядке.
+        \item Каждая буква встречается в слове не более одного раза.
+    \end{enumerate}
+
+    Задача о правильном порядке учета ограничения, наиболее оптимальный - 2, 3, 1, 4. \newline
+    Ответ:
+    $ 1 \cdot (1 + k - 4) \cdot C_{k-3}^2 \cdot 2 \cdot C_{n-5}^{k-5} \cdot (k - 5)! $
+
+\end{document}
