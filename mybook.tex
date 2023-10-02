@@ -1,0 +1,87 @@
+\documentclass[a6paper, 10pt]{book}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Теорема}
+\newtheorem*{theorem_}{Теорема}
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{corollary_}{Следствие}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+\newcommand{\larrow}{\Leftarrow}
+\newcommand{\rarrow}{\Rightarrow}
+\newcommand{\lrarrow}{\Leftrightightarrow}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Иван-Чай}
+	\date{1984}
+	\title{Математический анализ рептилоидов}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\pagenumbering{arabic}
+
+	\begin{theorem_}
+		\[ % \[
+		\left[
+		\begin{gathered}
+			\alpha \neq 8
+			\\
+			\alpha \neq 13
+			\\
+		\end{gathered}
+		\forall \alpha : \alpha \in \N, \alpha \geq 5
+		\] % \[
+	\end{theorem_}
+
+	\begin{proof}
+		Рассмотрим случаи
+
+		\begin{itemize}
+			\item $ \alpha > 11 \rarrow \alpha \neq 8 $
+			\item $ \alpha \leq 11 \rarrow \alpha \neq 13 $
+		\end{itemize}
+	\end{proof}
+
+	Теперь рассмотрим следущую совокупность уравнений
+	\[ % \[
+		\left[
+		\begin{gathered}
+			(x - 1.4)^2 + y^2 = 1
+			\\
+			(x + 1.4)^2 + y^2 = 1
+			\\
+			x^2 + \left(\frac{y}{4} - 2\right)^2 = 1
+		\end{gathered}
+	\] % \]
+
+	Она имеет график следущего вида
+
+	\includegraphics[width=1 \textwidth]{~/Pictures/hui.png}
+
+	Свойства этой совокупности предлагаются читателю для самостоятельного изучения, в качестве несложного упражнения
+\end{document}

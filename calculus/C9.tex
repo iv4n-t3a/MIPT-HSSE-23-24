@@ -1,0 +1,281 @@
+% /*
+%  * ----------------------------------------------------------------------------
+%  * "THE BEER-WARE LICENSE" (Revision 42):
+%  * @iv4n-t3a wrote this file.  As long as you retain this notice you
+%  * can do whatever you want with this stuff. If we meet some day, and you think
+%  * this stuff is worth it, you can buy me a beer in return.   Иван-Чай
+%  * ----------------------------------------------------------------------------
+%  */
+
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Th}
+\newtheorem*{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{lemma}{Lem}
+\newtheorem*{lemma_}{Lem}
+\newtheorem*{note}{Nt}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+\renewcommand{\vec}{\overrightarrow}
+
+\newcommand{\oR}{\overline{\mathbb R}}
+\newcommand{\hR}{\hat{\mathbb R}}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Тюленев Александр Иванович\\(Конспектировал Иван-Чай)}
+	\date{9 лекция}
+	\title{Введение в математический анализ}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+    \begin{theorem}[Условие Коши]
+        Пусть $ f: \dot{U}_{\delta_0} \to \R $.
+        \[
+            \forall \eps > 0 \exists \delta(\eps) \in (0, \delta_0]: \forall x_1, x_2 \in \dot{U}_{\delta(\eps)}(x_0) \hrarrow |f(x_1) - f(x_2)| < \eps |
+        .\]
+    \end{theorem}
+    \begin{theorem_}[Критерий Коши]
+        Пусть $ f: \dot{U}_{\delta_0}(x_0) \to \R $.
+        Следущие условия эквивалентны.
+        \begin{enumerate}
+            \item f удовлетворяет усовию Коши в $ x_0 $
+            \item $ \exists \lim\limits_{x \to x_0} = a \in \R $
+        \end{enumerate}
+    \end{theorem_}
+
+    \begin{proof}[(1) $ \Rarrow $ (2)]
+        Пусть $ \exists \lim\limits_{x \to x_0} f(x) = a \in \R $.
+        \[ \forall \eps > 0 \quad \exists \delta \in (0, \delta_0]: \quad \forall x \in \dot{U}(x_0) \hrarrow |f(x) - a| < \frac{\eps}{2} \]
+        \[ \Downarrow \]
+        \[ \forall \eps > 0 \quad \exists \delta \in (0, \delta_0]: \quad \forall x_1, x_2 \in \dot{U}(x_0) \hrarrow
+            |f(x_1) - a| < \frac{\eps}{2} \land
+            |f(x_2) - a| < \frac{\eps}{2} \]
+    \end{proof}
+
+    \begin{proof}[(2) $ \Rarrow $ (1)]
+        Поскольку определения по Коги и по Гейне эквивалентны докажем,что из критерия Коши следует существование предела
+        по Гейне.
+
+        Зафиксируем произвольную последовательность Гейне в точке $ x_0 $.
+
+        \[
+            \forall \delta > 0 \quad \exists N(\delta) \in \N: \quad \forall n \geq N \hrarrow  x_n \in \dot{U}_{\delta}(x_0)
+        .\] \[ \Downarrow \] \[
+            \forall \delta > 0 \quad \exists N(\delta(\eps)) \in \N: \quad \forall n, m \geq N(\delta(\eps)) \hrarrow |f(x_n) - f(x_m)| < \eps
+        .\]
+
+        Получилось условие Коши для $ \left\{ f(x_n) \right\}_{n = 1}^{\infty} $, отсюда
+        $ \exists \lim\limits_{n \to \infty} f(x_n) = A \in \R $.
+
+        Для произвольной последовательности Гейне в точке $ x_0 $
+        \[
+            \exists \lim\limits_{n \to \infty} f(x_n) = A
+        .\]
+        Но в силу предыдущей леммы A не зависит от выбора $ x_n $.
+    \end{proof}
+
+    \begin{note}
+        Критерий Коши работает и для пределов по множеству.
+    \end{note}
+
+    \begin{proof}
+        Доказательсвто аналогично предыдущему.
+    \end{proof}
+
+    \begin{theorem_}[Принцип локализации]
+        Пусть
+        \[\exists \overline{\delta} \in (0, +\infty): f(x) = g(x) \forall x \in \dot{U}_{\overline{\delta}}(x_0). \]
+        Тогда
+
+    \end{theorem_}
+
+    \section{Односторонний предел и т. Вейерштрассе}
+
+    \begin{definition}
+        Пусть $ f: \dot{U}^+_{\delta_0}(x_0) \to \R, \quad \dot{U}^+_{\delta_0}(x_0) = (x_0, x_0+\delta) $.
+        Будем говорить, что $ A \in \hR $ является правостороним пределом $ f $ в $ x_0 $, если
+        \[
+            \lim\limits_{{x \to x_0}\limits_{x \in \dot{U}^+_{\delta_0}(x_0)} = A
+        .\]
+    \end{definition}
+
+    \begin{definition}
+        Функция называется нестрого возрастающей(убывающей) на $ x \subset \R, X \neq \varnothing $, если
+        $ \forall x_1, x_2 \in X \quad x_1 < x_2 \Rarrow f(x_1) \leq f(x_2) \quad (f(x_1) \geq f(x_2)) $.
+    \end{definition}
+
+    Аналогично определяется строгое возрастание/убываение на X, строгая/нестрогая монотонность на X.
+
+    \begin{definition}
+        \[
+            \sup_{x \in X} f(x) = \sup \{ f(x), x \in X \}.
+        \] \[
+            \inf_{x \in X} f(x) = \inf \{ f(x), x \in X \}.
+        \] \[
+            \max_{x \in X} f(x) = \max \{ f(x), x \in X \}.
+        \] \[
+            \min_{x \in X} f(x) = \min \{ f(x), x \in X \}.
+        \]
+    \end{definition}
+
+    Запишем в кванторах \newline
+    $ \sup\limits_{x \in X} f(x) = M \in \R \Lrarrow $
+    \begin{cases}
+        f(x) \leq M, \quad \forall  x \in X \\
+        \forall M' < M \quad \exists x' \in X \quad f_(x') > M' \\
+    \end{cases}
+
+    $ \sup\limits_{x \in X} f(x) = M \in \R \Lrarrow $
+    \begin{cases}
+        f(x) \leq M, \quad \forall  x \in X \\
+        \forall \eps > 0 \quad ex x_\eps \in X: f(x_\eps) \in U_{\eps}(M)
+    \end{cases}
+
+    \begin{theorem_}[Теорема Вейерштрассе]
+        Пусть $ -\infty \leq a < b \leq +\infty $.
+        Пусть f нестрого возрастает на $ (a, b) $.
+        Тогда
+        \[
+            \exists \lim\limits_{x \to x_0 - 0} = \sup\limits_{x \in (a, b)} f(x)
+        \] \[
+            \exists \lim\limits_{x \to x_0 + 0} = \inf\limits_{x \in (a, b)} f(x)
+        .\]
+    \end{theorem_}
+
+    \begin{proof}[Докажем (1) т.к. (2) аналогично]
+        \[
+            E = \{ f(x): x \in (a, b) \}
+        .\] \[
+            \exists \sup E = M \Rarrow \forall \eps > 0 \quad \exists x_\eps \in (a, b): \quad f(x_\eps) \in U_{\eps}(M)
+        .\]
+        Но f нестрогов возрастает на $ (a, b) \Rarrow f(x) \in U_{\eps}(M) \quad \forall x \in [x_\eps, b) $
+
+        Но тогда $ \forall  \eps > 0 \quad \exists \delta(\eps) = b - x_\eps: \forall x \in \dot{U}^{-}_{\delta(\eps)}(b) \hrarrow f(x) \in U_{\eps}(M) $
+    \end{proof}
+
+    \section{Арифмитические операции с пределами функции}
+
+    \begin{theorem}
+        Пусть $ x \neq \varnothing, x_0 $ - предельная точка.
+        Пусть $ \exists \lim\limits_{x \to x_0} f_1(x) = a_1 \in \R $
+        Пусть $ \exists \lim\limits_{x \to x_0} f_2(x) = a_2 \in \R $
+        Тогда
+        \begin{enumerate}
+            \item $ \lim\limits_{x \to x_0} (f_1(x) \pm f_2(x)) = a_1 \pm a_2 $.
+            \item $ \lim\limits_{x \to x_0} (f_1(x) \cdot f_2(x)) = a_1 \cdot a_2 $.
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+        Для доказательства следует использовать определение предела по Гейне, т.к. для
+        последовательностей подобные свойства уже доказаны.
+    \end{proof}
+
+    \begin{lemma}[Лемма о сохранение знаков]
+        Пусть $ f: x \to \R $, $ x_0 $ - предельная точка X.
+        Пусть $ \exists \lim\limits_{x \to x_0} f(x) = a \neq 0 $.
+        Тогда $ \exists \overline{\delta} > 0: \forall x \in \dot{U}_{\overline{\delta}}(x_0) \cap X \hrarrow $
+        \begin{cases}
+            f(x) \neq 0 \\
+            sign f(x) = sign a \\
+        \end{cases}
+    \end{lemma}
+
+    \begin{corollary}
+        Пусть $ f, g: X \to \R, X \neq \varnothing, x_0 $ - предельня точка X.
+        Пусть $ \exists \lim\limits_{x \to x_0} g(x) = B \neq 0. $
+        Тогда $ \exists \overline{\delta} > 0: g(x) \neq 0 \quad \forall x \in \dot{U}_{\overline{\delta}}(x_0) \cap X $
+    \end{corollary}
+
+    \begin{proof}
+        Следует из леммы о сохранение знаков и о пределе частичного для последовательности.
+    \end{proof}
+
+    \section{О предельном переходе в неравенство}
+
+    \begin{theorem_}[О трех милиционерах]
+    Пусть $ f, g, h: X \to \R, x_0 $ - предельная точка для $ X $.
+    Пусть $ \exists \lim\limits_{x \to x_0} f(x) = \lim\limits_{x \to x_0} g(x) \in \oR $.
+    Тогда $ \exists \lim\limits_{x \to x_0} h(x) = A.
+    \end{theorem_}
+
+    \begin{proof}
+        По Гейне.
+    \end{proof}
+
+    \begin{theorem}[О предельном переходе в неравенство]
+        Пусть $ f, g: X \to \R $, $ x_0 $ - предельная точка для X.
+        Пусть
+        \begin{cases}
+            \exists \lim\limits_{x \to x_0} f(x) = A \in \oR \\
+            \exists \lim\limits_{x \to x_0} g(x) = B \in \oR \\
+        \end{cases}
+        тогда, если $ f(x) \leq g(x) \quad \forall x \in X \Rarrow A \leq B $.
+    \end{theorem}
+
+    \begin{note}
+        Строгое неравенство может не сохраниться при предельном переходе.
+    \end{note}
+
+    \section{Нижний и верхний предел последовательности}
+
+    \begin{definition}
+        Пусть $ f : X \to \R, x_0 $ - предельная точка.
+    \end{definition}
+    
+    
+\end{document}

@@ -165,7 +165,7 @@
     \end{definition}
 
     \begin{definition}
-        Если $ A $ - неограниченно сверху, то $ \inf A := - \infty $.
+        Если $ A $ - неограниченно снизу, то $ \inf A := - \infty $.
     \end{definition}
 
     \begin{theorem}[Теорема о существовании и единственности инфинума]
@@ -190,7 +190,7 @@
     \section{Лемма архимеда}
 
     \begin{theorem}[Лемма Архимеда]
-    \[ \forall M' \in \R \quad \exists N(M') \in \N: N(M') > N \]
+    \[ \forall M' \in \R \quad \exists N(M') \in \N: N(M') > M' \]
     \end{theorem}
 
     \begin{proof}
@@ -225,10 +225,10 @@
     $
     \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} \hrarrow
     \exists x \in
-    \cap_{n=1}^{+\infty}
+    \bigcap\limits_{n=1}^{+\infty}
     \left[ a_{n}, b_{n} \right]
     \Lrarrow
-    \cap_{n=1}^{+\infty}
+    \bigcap\limits_{n=1}^{+\infty}
     \left[ a_{n}, b_{n} \right]
     \neq \varnothing
     $.
@@ -280,19 +280,19 @@
     Стягивающяяся последовательность вложенных отрезков имеет единственную общую точку.
     $ \Lrarrow $
     $ \exists! x \in $
-    $ \cap_{n=1}^{+\infty} $
+    $ \bigcap\limits_{n=1}^{+\infty} $
     $ \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} $.
     \end{theorem}
 
     \begin{proof}
     Предположим, что $ \exists x_1, x_2: $
-    $ x_1 \in $
-    $ \cap_{n=1}^{+\infty} $
-    $ \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} $
-    $ \land x_1 \in $
-    $ \cap_{n=1}^{+\infty} $
-    $ \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} $
-    $ \land x_1 \neq x_2 $
+    \begin{cases}
+        x_1 \in \bigcap\limits_{n=1}^{+\infty}
+        \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} \\
+        x_2 \in \bigcap\limits_{n=1}^{+\infty}
+        \left\{ \left[ a_n, b_n \right] \right\}_{n=1}^{+\infty} \\
+        x_1 \neq x_2 \\
+    \end{cases}
 
     \noindent
     $ x_1 \neq x_2 \Rarrow |x_1 - x_2| > 0 $.
@@ -329,14 +329,14 @@
         $ a_n = 0 \quad \forall n \in \N $ \newline
         $ b_n = \frac{1}{n} \quad \forall n \in \N $ \newline
         $ (a_n, b_n) = \left( 0, \frac{1}{n} \right) $ \newline
-        $ \cap_{n=1}^{+\infty} $
+        $ \bigcap\limits_{n=1}^{+\infty} $
         $ \left( 0, \frac{1}{n} \right) $
         $ = \varnothing $
     \end{statement}
 
     \begin{proof}
     Предположим $ \exists x > 0: $ \newline
-        $ x \in \cap_{n=1}^{+\infty} $
+        $ x \in \bigcap\limits_{n=1}^{+\infty} $
         $ \left( 0, \frac{1}{n} \right) $
         $ \Rarrow n < \frac{1}{x} \quad \forall n \in \N $
         - противоречие с лемой архимеда.

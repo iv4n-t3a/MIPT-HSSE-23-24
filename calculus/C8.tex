@@ -1,0 +1,237 @@
+% /*
+%  * ----------------------------------------------------------------------------
+%  * "THE BEER-WARE LICENSE" (Revision 42):
+%  * @iv4n-t3a wrote this file.  As long as you retain this notice you
+%  * can do whatever you want with this stuff. If we meet some day, and you think
+%  * this stuff is worth it, you can buy me a beer in return.   Иван-Чай
+%  * ----------------------------------------------------------------------------
+%  */
+
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Th}
+\newtheorem*{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{lemma}{Lem}
+\newtheorem*{lemma_}{Lem}
+\newtheorem*{note}{Nt}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+
+\newcommand{\oR}{\overline{\mathbb R}}
+\newcommand{\hR}{\hat{\mathbb R}}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Тюленев Александр Иванович\\(Конспектировал Иван-Чай)}
+	\date{8 лекция}
+	\title{Введение в математический анализ}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+    \begin{note}
+        $ \left\{x_n \right\}_{n = 1}^{\infty} $ - числовая последовательность. $ PL(\left\{x_n \right\}_{n = 1}^{\infty} $ - замкнутое множество.
+    \end{note}
+
+    \begin{note}
+        \[
+            \left\{x_n \right\}_{n = 1}^{\infty} \cup PL\left(\left\{x_n \right\}_{n = 1}^{\infty}\right) =
+            cl(\left\{x_n \right\}_{n = 1}^{\infty})
+        \]
+    \end{note}
+
+    \begin{note}
+        $ \Q = \left\{P_n \right\}_{n = 1}^{\infty} $ множество т.
+    \end{note}
+
+    \section{Предел функции.}
+
+    \begin{definition}
+        Под функцией, если не оговорено обратное, понимаем(однозначное) отображение
+        $ f: E \to \R $, где $ E \subset \R, E \neq \varnothing $.
+    \end{definition}
+
+    \begin{definition}
+        Пусть $ \eps > 0, x_0 \in \hR $. Тогда проколотой $ \eps $ окресностью точки
+        x_0 называется множество $ U_\eps^.(x_0 := U_\eps (x_0) \setminus { x_0 }.
+    \end{definition}
+
+    \begin{note}
+        Если $ x_0 = \pm \infty $ или $ x_0 = \infty $ проколотая $ \eps $ окресность
+        совпадает с обычной.
+    \end{note}
+
+    \begin{definition}[Предела функции по Коши]
+        Пусть $ x_0 \in \hR $ и пусть $ A \in \hR. Пусть $ f: U_{\eps}^.(x_0) \to \R $.
+        Будем говорить, что A - предел функции f в точке $ x_0 $ и записывать
+        $ \lim_{x \to x_0} f(x) = A $ или $ f(x) \to A, x \to x_0 $, если
+        \[
+            \forall \eps > 0 \quad \exists \delta(\eps) \in (0, \delta_n]:
+            \forall x \in U^._\delta(x_0) \hrarrow
+            f(x) \in U_{\eps}(A)
+        .\]
+    \end{definition}
+
+    \begin{definition}
+        Псоледовательностью Гейне в точке $ x_0 \in \hR $ называется такая числовая
+        последовательность $ \left\{x_n \right\}_{n = 1}^{\infty} \in \R $, что
+        \begin{enumerate}
+            \item $ \lim_{n \to \infty} x_n = x_0 $
+            \item $ x_n \neq x_0 \forall n \in N $
+        \end{enumerate}
+    \end{definition}
+
+    \begin{definition}[Предела функции по Гейне]
+        Пусть $ x_n \in \hR, A \in \hR $. Пусть $ f: U^.\delta(x_n) \to \R $.
+        Будем говорить, что $ \exists \lim_{x \to x_0} f = A $ по Гейне, если
+        $ \forall последовательноть Гейне $ \left\{x_n \right\}_{n = 1}^{\infty}
+        \in U^._\delta(x_0 ) $ в точке $ x_0 $ если $ \exists \lim_{n \to \infty} f(x_n) = A $.
+    \end{definition}
+
+    \begin{theorem}[Эквивалентность определений по Коши и по Гейне]
+        Пусть $ x_0 \in \hR, A \in \hR $. Пусть $ f: u^._\delta(x_n) \to \R.
+        Тогда
+        $ \lim_{x \to x_0} f(x) $ (по Коши) $ \Lrarrow $
+        $ \lim_{x \to x_0} f(x) $ (по Гейне)
+    \end{theorem}
+
+    \begin{proof}[Коши $ \Rarrow $ Гейне]
+        Возьмем произвоьную последовательность Гейне $ \{ x_n \} \in U^._\delta(x_n) $
+        в точке $ x_0 $.
+
+        \[
+            \lim_{n \to \infty} x_n = x_0 \Rarrow \forall \eps > 0 \quad \exists N(\delta) \in \N:
+            \forall n \geq N(\delta) \hrarrow x_n \in U_\delta^.(x_n).
+        .\]
+
+        В частности, если произвольней $ \eps > 0 $, то
+        $ \forall n \geq N(\delta(\eps)) \hrarrow  x_n \in U_\delta(x_n) \Rarrow
+        \forall n \geq N(\eps) \hrarrow f(x_n) \in U_{\eps}(A)$
+    \end{proof}
+
+    \begin{proof}[Гейне $ \Rarrow $ Коши]
+        Пердоположим, что $ \exists \lim_{x \to x_0} f(x) = A $ по Гейне, но не по Коши.
+
+        $ \exists \eps > 0: \forall \delta \in (0, \delta_n] \quad \exists x \in U_\delta^.(x_0):
+        f(x) \neq U_{\eps}(A) $
+
+        $ \exists \eps > 0: \forall n \in \N \quad \exists x_n \in U^._{\frac{\delta}{n}}(x_n):
+        f(x_n) \not \in U_{\eps}(A) $
+    \end{proof}
+
+    \section{Предел по множеству}
+
+    \begin{definition}
+        $ E \subset \R $ - Непустое множество, $ x_n \in \hR $. Будем говорить, что $ x_n $ -
+        предельная точка множества E, если
+        \[
+            \forall \delta > 0 \quad U^.\delat(x_0) \cap E \neq \varnothing
+        .\].
+    \end{definition}
+
+    \begin{definition}[Предела по множесту].
+        Пусть A \in \hR, x_0 \in \hR $.
+        Пусть $ f : E \to \R, E \neq \varnothing $ и $ x_n $ - предельная точка
+        множества E. Будем говорить, что A предел f по множеству E при $ x \to x_0 $,
+        если:
+
+        По Коши:
+        \[
+            \forall \eps > 0 \quad \exists \delta(\eps) > 0: \forall x \in E \cap U^._\delta(x_n) \hrarrow
+            f(x) \in U_{\eps}(A)
+        .\]
+
+        По Гейне
+        $ \forall $ последовательности Гейне $ \{ x_n \} \subset E $ в точке $ x_0 \hrarrow
+        \lim_{n \to \infty} f(x_n) = A $
+    \end{definition}
+
+    \begin{lemma}
+        Пусть $ E_1, E_2 \subset \R $. Пусть $ A \in \hR, x_0 \in \hR $.
+        Пусть $ x_0 $ - предельная точка для $ E_1 $ и для $ E_2 $. Тогда в силу утверждения
+        эквивалентности
+
+        там крч предел по объеденению Е1 и Е2 тоже самое что два предела по Е1 и по Е2
+    \end{lemma}
+
+    \begin{proof}[Слева на право]
+        \[
+            \forall  \eps > 0 \exists \delta(x) > 0: \forall x
+        .\]
+    \end{proof}
+
+    \begin{definition}[Функция Дирихле].
+        $ f(x) = $
+        \left\{
+        \begin{aligned}
+            0, x \in \R \setminus \Q \\
+            1, x \in \Q \\
+        \end{aligned}
+        \right.
+    \end{definition}
+
+    \begin{lemma}
+        Пусть $ f: E \to \R, x_0 $ - предельная точка множества E.
+        Пусть $ \forall $ последовательности Гейне в точке $ x_0 \quad \exists
+        \lim_{n \to \infty} f(x_n) = A \in \hR $
+    \end{lemma}
+
+    \begin{proof}
+
+    \end{proof}
+    \begin{definition}[Критерий Коши для функции]
+        .
+    \end{definition}
+\end{document}
