@@ -167,6 +167,46 @@ git remote -v
 * git config --global alias.st status
 
 ---
+![bg 78%](images/branches.png)
+
+---
+![bg 78%](images/rebase.png)
+
+---
+
+* git checkout main
+* git checkout -b new_branch
+* git checkout main
+* touch f1 && git add f1 && git commit -m "add new file"
+* git checkout new_branch
+* git rebase main
+
+---
+### .ssh/config
+
+* `~/.ssh/config`
+```
+Host 10.0.0.10  // адрес или маска по домену
+   IdentityFile /Users/epsilond1/.ssh/id_rsa // путь до приватного ключа
+   User ubuntu // под каким пользователем логиниться
+   ForwardAgent yes // пробрасывать ключи
+   Port 1422 // порт на удаленном сервере
+```
+* существует еще много опций для конфига
+
+---
+
+* cd test_repo
+* git checkout -b b1
+* touch f1 && git add f1
+* git commit -m "add new file"
+* git checkout -b b2
+* touch f2 && echo 'hello' > f2
+* git add f2 && git commit -m "add new file two"
+* git checkout b1
+* git merge b2
+
+---
 
 * [Почитать](https://habr.com/ru/articles/174467/)
 * [Еще почитать](https://habr.com/ru/companies/badoo/articles/163853/)
