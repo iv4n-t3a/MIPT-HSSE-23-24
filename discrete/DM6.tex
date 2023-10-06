@@ -1,0 +1,217 @@
+% /*
+%  * ----------------------------------------------------------------------------
+%  * "THE BEER-WARE LICENSE" (Revision 42):
+%  * @iv4n-t3a wrote this file.  As long as you retain this notice you
+%  * can do whatever you want with this stuff. If we meet some day, and you think
+%  * this stuff is worth it, you can buy me a beer in return.   Иван-Чай
+%  * ----------------------------------------------------------------------------
+%  */
+
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Th}
+\newtheorem*{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{lemma}{Lem}
+\newtheorem*{lemma_}{Lem}
+\newtheorem*{note}{Nt}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+\renewcommand{\vec}{\overrightarrow}
+
+\newcommand{\oR}{\overline{\mathbb R}}
+\newcommand{\hR}{\hat{\mathbb R}}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Зухба А.В.\\(Конспектировал Иван-Чай)}
+	\date{6 лекция}
+	\title{Дискретна математика}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+    \section{Правило включений-исключений}
+
+    \[
+        | A \cup B | = | A | + | B | - | A \cap B |
+    .\] \[
+        | A \cup B \cup C | = | A | + | B | + | C | -
+        | A \cap B | - | A \cap C | - | B \cap C | +
+        | A \cap B \cap C |
+
+    .\]
+
+    Пусть
+        $ x \in X $,
+        $ \alpha_1, \alpha_2, \alpha_3, \dots \alpha_n $,
+        $ N(\alpha_{j_1}, \alpha_{j_2}, \dots \alpha_{j_k}) $ -
+        количество жлементов обладающих свойсвтами
+        $ \alpha_{j_1}, \alpha_{j_2}, \dots \alpha_{j_k} $.
+    \[
+        N_0 = N(\neg \alpha_1, \neg \alpha_2, \dots \neg \alpha_n)
+    .\] \[
+        N_0 = N - N(\alpha_1) - N(\alpha_2) + N(\alpha_1, \alpha_2)
+    .\]
+
+    В общем виде:
+    \[
+        N_0 = N - \sum\limits_j N(\alpha_j) +
+        \sum \limits_{1 \leq \alpha_{j_1} < \alpha_{j_2} \leq n}
+        N(\alpha_{j_1}, \alpha_{j_2}) - \dots
+        + (-1)^n N(\alpha_1, \alpha_2, \dots \alpha_n) (*)
+    .\]
+    Слогаемое связаные с k свойствами:
+    \[
+        (-1)^k \sum\limits_{1 \leq \alpha_{j_1} < \dots < \alpha_{j_k} \leq n}
+        (\alpha_{j_1}, \alpha_{j_2}, \dots \alpha_{j_k})
+    .\]
+
+    Докажем во общем виде
+
+    Пусть (*) выполняется для любого набора из не более чем n в свойств
+    \[
+        N(
+            \neg \alpha_1,
+            \neg \alpha_2,
+            \dots
+            \neg \alpha_n,
+            \neg \alpha_{n + 1}
+        ) = N(
+            \neg \alpha_1,
+            \neg \alpha_2,
+            \dots
+            \neg \alpha_n,
+        ) - N(
+            \neg \alpha_2,
+            \neg \alpha_3,
+            \dots
+            \neg \alpha_{n + 1}
+        )
+    .\]
+    Распишем
+    для элементов обладающих свойсвтом $ \alpha_{n + 1} $
+    \[
+        N(
+            \neg \alpha_1,
+            \neg \alpha_2,
+            \dots
+            \neg \alpha_n,
+            \neg \alpha_{n + 1}
+        ) =
+    \] \[
+        = N(\alpha_{n + 1}) -
+            \sum\limits_{j = 1}^n N(\alpha_j, \alpha_{n+1}) + \dots +
+        (-1)^k \sum\limits_{1 \leq \alpha_{j_1} < \dots < \alpha_{j_k} \leq n}
+        (\alpha_{j_1}, \alpha_{j_2}, \dots \alpha_{j_k}, \alpha_{n+1}) =
+    \] \[
+        = N(\alpha_{n + 1}) -
+            \sum\limits_{j = 1}^n N(\alpha_j, \alpha_{n+1}) + \dots +
+        (-1)^k \sum\limits_{1 \leq j_1 < \dots < j_{k-1} < j_k \leq n}
+        (\alpha_{j_1}, \alpha_{j_2}, \dots \alpha_{j_k}, \alpha_{n+1}) =
+    \] \[
+        = N(\alpha_{n + 1}) -
+            \sum\limits_{j = 1}^n N(\alpha_j, \alpha_{n+1}) + \dots +
+        (-1)^k \sum\limits_{1 \leq j_1 < \dots < j_{k-1} < j_k < n + 1 }
+        (\alpha_{j_1}, \alpha_{j_2}, \dots \alpha_{j_k}, \alpha_{n+1})
+    \]
+
+    \section{Инъективное биективное и сюръективное отображение    }
+
+    \begin{definition}
+        Задано отображение или функция \gamma: X \to Y, если
+        каждому элементу $ x \in X $ сопоставлен единственный элемент
+        $ \gamma(x) \in Y $.
+    \end{definition}
+
+    \begin{definition}
+        Im \gamma = \gamma(x) = \{ y \in Y | x \in X: \gamma(x) \in Y \}.
+    \end{definition}
+
+    \begin{definition}
+        \gamma^{-1}(y) = \{ x \in X | f(x) = y \} \subseteq X.
+    \end{definition}
+
+    \begin{definition}
+        Сюрьективное отображение (из X \bold{на} Y) Im \gamma = Y.
+    \end{definition}
+
+    Нет пустых ящиков:)
+
+    \begin{definition}
+        инъективное отображение $ x \neq y \Rarrow \gamma(x) \neq \gamma(y) $.
+    \end{definition}
+
+    В ящиках не более одного шарика:)
+
+    \begin{definition}
+        Биекция = сюръекция + инъекция.
+    \end{definition}
+
+    В каждом ящике по 1 шарику:)
+
+    \section{Какая-то табличка}
+
+    р - различимо, нр - неразличимо.
+
+    \noindent
+    \begin{tabular}{|h| a | b | c | d |}
+        \hline
+         & произвольно & инъект.($ m \geq n $) & сюръет. ($ n \geq m $) & биект.(n = m) \\ \hline
+        X, Y - р        & $ m^n $ & $ \frac{m!}{(m - n)!} & ? & $ m! $ \\ \hline
+        X - нр, Y - р   & C_{n+m-1}^n & C_n^m & $ C_{n-1}^{m-1} & 1 \\ \hline
+        X - р,  Y - нр  & ? & 1 & ? & 1 \\ \hline
+        X, Y - нр       & ? & 1 & ? & 1 \\ \hline
+    \end{tabular}
+\end{document}
