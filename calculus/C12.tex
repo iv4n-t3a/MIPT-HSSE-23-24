@@ -1,0 +1,268 @@
+% /*
+%  * ----------------------------------------------------------------------------
+%  * "THE BEER-WARE LICENSE" (Revision 42):
+%  * @iv4n-t3a wrote this file.  As long as you retain this notice you
+%  * can do whatever you want with this stuff. If we meet some day, and you think
+%  * this stuff is worth it, you can buy me a beer in return.   Иван-Чай
+%  * ----------------------------------------------------------------------------
+%  */
+
+\documentclass[a5paper, 10pt]{article}
+
+\usepackage[english, russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{indentfirst}
+\usepackage{soulutf8}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Th}
+\newtheorem*{theorem_}{Th}
+\newtheorem*{statement}{St}
+\newtheorem{statement_}{St}
+\newtheorem{definition}{Def}
+\newtheorem*{definition_}{Def}
+\newtheorem{lemma}{Lem}
+\newtheorem*{lemma_}{Lem}
+\newtheorem*{note}{Nt}
+\newtheorem{exersise}{Ex}
+\newtheorem{corollary}{Cl}[theorem]
+\newtheorem{corollary_}{Cl}[theorem_]
+
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=10mm}
+\geometry{right=10mm}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\kappa}{\varkappa}
+\renewcommand{\vec}{\overrightarrow}
+
+\newcommand{\oR}{\overline{\mathbb R}}
+\newcommand{\hR}{\hat{\mathbb R}}
+\newcommand{\Ud}{\dot{U}}
+
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+\newcommand{\hrarrow}{\hookrightarrow}
+\newcommand{\Larrow}{\Leftarrow}
+\newcommand{\Rarrow}{\Rightarrow}
+\newcommand{\Lrarrow}{\Leftrightarrow}
+
+\hypersetup{
+	linktocpage,
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=blue,
+}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\author{Тюленев Александр Иванович\\(Конспектировал Иван-Чай)}
+	\date{12 лекция}
+	\title{Введение в математический анализ}
+
+	\linespread{1.4}
+	\selectfont
+
+	\maketitle
+	\newpage
+
+	\tableofcontents
+
+    \section{Предел композиции}
+
+
+    \begin{theorem_}[Предел композиции 2]
+        Пусть $ f: U_{\sigma_0} \to \R, y : \Ud_{\delta_0}(x_0) \to U_{\sigma_0}(y_0) $.
+        Пусть $ f $ непрерывна в $ y_0 $ и $ \lim\limits_{x \to x_0}  y(x) = y_0 $
+        Тогда $ \exists \lim\limits_{x \to x_0} f_0 y(x) = \lim\limits_{x \to x_0} f(y(x)) = f(y_0) $
+    \end{theorem_}
+
+    \begin{proof}
+        . \newline
+        \begin{cases}
+            \forall \eps > 0 \quad \exists \sigma(\eps) \in (0, \delta_0) \quad \forall
+            y \in U_{\delta(\eps)}(y_0) \hrarrow |f(y) - f(y_0)| < \eps \\
+            \forall \sigma > 0 \quad \exists \delta(\eps) \in (0, \delta_0) \quad \forall
+            x \in U_{\delta(\eps)}(x_0) \hrarrow |y(x) - y_0| < \eps \\
+        \end{cases}
+        \[
+            \forall \eps > 0 \quad \exists  \widetilde{\delta} = \delta(\sigma(\eps)) \in (0, \delta_0)
+        .\] \[
+            \forall x \in \Ud
+        .\]
+
+        Там дальше было надо дотехать будет
+    \end{proof}
+
+    \section{Теорема об обратной функции}
+
+    \begin{lemma}
+        $ f: X \to Y $ - обратима на $ X \Lrarrow f $ - сюрьекция $ \land f $ - инъекция.
+    \end{lemma}
+
+    \begin{proof}[$ \Larrow $]
+        Пусть $ f $ - инъекция и сюръекция. \newline
+        Рассмотрим $ y \in Y $, т.к. $ f $ - сюрьекция. \newline
+        Но т.к. f - инъекция $ x $ - единственный $ \Rarrow f^{-1}(y) = x $(единств)
+        $ \exists x \in X: f(x) = y $
+    \end{proof}
+
+    \begin{proof}[$ \Rarrow $]
+        Т.к. f обратимо, то $ \exists f^{-1}: Y \to X \Rarrow f - $ сюрьекция.
+        \[
+            \forall y \in Y \quad \exists x =  f ^{-1}(y): f(f ^{-1}(y)) = f(x) = y
+        .\]
+
+        Покажем, что $ f $ - инъекция.
+        Неуспел затехать, сори
+    \end{proof}
+
+    \begin{lemma}
+        Пусть $ X \subset \R, X \neq \varnothing $. \newline
+        Пусть $ f: X \to \R $ - строго монотонна \newline
+        Тогда $ f $ - обратима и $ f^{-1} $ строго возрастает, если $ f $ возрастает,
+        иначе убывает, если $ f $ возрастает,
+        иначе убывает.
+    \end{lemma}
+
+    \begin{proof}
+        В силу предыдущей доказаной леммы достаточно доказать, что $ f: X \to f(x) $ - инъективно,
+        но это следует из строгой монотонности.
+
+        Рассморим случай строгого возрастания на $ X $, т.к. случай убывания аналогичен.
+        $ f^{-1}: f(x) \to X $ сущ в силу инъективности $ f $.
+        Покажем, что она строго возрастает.
+
+        $ y_1, y_2 \in f(x) $
+        Пусть $ y_2 > y_1 $
+        покажем, что $ f ^{-1}(y_2) > f ^{-1}(y_1) $.
+        Предположим противное.
+        Т.к. $ f $ строго возрастает $ y_2 = f(f ^{-1}(y_2)) \leq f(f ^{-1}(y_1)) = y_1 \Rarrow
+        y_2 < y_1 $
+    \end{proof}
+
+    \begin{theorem_}[Теорема об обратной функции]
+        Пусть $ f \in C([a, b]) $ - строго монотонна на $ [a, b] $.
+        Тогда $ \exists f ^{-1} \in C([m, M]) $ имеет характер монотонности тот же, что и $ f $.
+        $ m = \min\limits_{x \in [a, b] } f(x) $,
+        $ M = \max\limits_{x \in [a, b] } f(x) $
+    \end{theorem_}
+
+    \begin{proof}
+        Тот факт, что $ \exists f^{-1} $ имеет тот же характер монотонности, что и $ f $
+        вытекает из предыдущей леммы.
+        Осталось показать непрерывность $ f ^{-1} $ в любой точке $ y \in [m, M] $.
+
+        Рассмотрим случай $ y_0 \in (m, M) $
+
+        Т.к. $ y_0 \in (m, M) $, то $ x_0 \in (a, b) $ \newline
+        Фиксируем $ \eps > 0: U_{\eps}(x_0) \in (a, b) $
+
+        Рассмотрим отрезок $ [x_0 - \eps, x_0 + \eps] \subset (a, b) $.
+        $ f $ - строго возрастает и непрерывно $ \Rarrow f $ -
+        осуществляет биекцию $ [x_0 - \eps, x_0 + \eps] $ на $ [f(x_0-\eps),f(x_0+\eps)]$.
+        $ \delta(\eps) = min \{
+            f(x_0) - f(x_0-\eps),
+            f(x_0+\eps) - f(x_0)
+        \} $.
+        Рассмотрим интервал $ (f(x_0) - \delta(\eps), f(x_0) + \delta(\eps)) \subset
+        (f(x_0-\eps), f(x_0+\eps))$
+        \[(f(x_0) - \delta(\eps), f(x_0) + \delta(\eps)) \subset
+        (f(x_0-\eps), f(x_0+\eps))
+        .\] \[ \Downarrow \] \[
+            \forall y \in (f(x_0) - \delta(\eps), f(x_0) + \delta(\eps)) \hrarrow
+            f^{-1}(y) \in U_{\eps}(x_0)) = U_{\eps}(f ^{-1}(y_0))
+        .\]
+    \end{proof}
+
+    \begin{corollary_}
+        Пусть $ f \in C((a, b)) $ и строго монотонна.
+        Тогда $ \exists f ^{-1} \in C((m, M)) $ и строго монотонна с тем же характером, что и f $
+
+        \[
+            m = \inf\limits_{x \in (a, b)} f(x) \in \oR
+        .\] \[
+            M = \sup\limits_{x \in (a, b)} f(x) \in \oR
+        .\]
+
+        Т.к. $ f $ - строго монотонна, то $ \exists f ^{-1} $ имеющая тот же характер монотонности.
+        Покажем, что $ f((a, b)) = (m, M) $
+
+        В силу обобщения о промежуточном значении $ (m, M) \subset f((a, b)) $, но m и M
+        не принимаются.
+
+        Действительно, если $ \exists x^* \in (a, b): M = f(x^*) \Rarrow
+        \exists x^{**} \in (x^*, b): f(x^{**}) > f(x^*) = M $ - противоречие.
+
+        Отсюда $ f((a, b)) \subset (m, M) \Rarrow f((a, b)) = (m, M)$.
+        Далее непрерывность доказывается как в предыдущей теореме.
+    \end{corollary_}
+
+    \section{Непрерывность элементарных функций и первый замечательный предел}
+
+    \begin{definition}
+        Длина кривой - супремум множества длин всех вписаных в нее ломаных, но мы этого пока
+        не знаем.
+    \end{definition}
+
+    \begin{lemma}
+        $ \sin{x} < x < \tg{x} \quad \forall \pi \in \left(0, \frac{\pi}{2}\right) $.
+    \end{lemma}
+
+    \begin{proof}
+        Ну там кружочки, треугольнички порисуйте и методом площадей, я не в силах это затехать.
+    \end{proof}
+
+    \begin{theorem_}[Первый замечательный предел]
+        \[
+            \exists \lim\limits_{x \to 0} \frac{\sin{x}}{x}= 0
+        .\]
+    \end{theorem_}
+
+    \begin{proof}
+        В силу принципа локализации рассмотрим на
+        $ \left( - \frac{\pi}{2}, \frac{\pi}{2} \right) \setminus \{ 0 \} $
+
+        Для x > 0:
+        \[
+            \frac{\sin{x}}{\tg{x}} < \frac{\sin{x}}{x} < 1
+            .\] \[ \Downarrow \] \[
+            \cos{x} < \frac{\sin{x}}{x} < 1
+        .\]
+
+        Для в силу четности:
+            $ \cos{x} < \frac{\sin{x}}{x} < 1 $ на
+        $ \left( - \frac{\pi}{2}, \frac{\pi}{2} \right) \setminus \{ 0 \} $
+        $ \Rarrow \exists \lim\limits_{x \to x_0} \frac{\sin{x}}{x}= 1 $
+    \end{proof}
+
+    \begin{theorem}
+        $ \sin{x}, \cos{x} $ - непрерывны.
+    \end{theorem}
+
+    \begin{proof}
+        Докажем для $ \sin{x} $, т.к. $ \cos{x} = \sin{\left( x + \frac{\pi}{2} \right) } $
+
+        \[
+        \left| \sin{x_1} - \sin{x_2} \right| =
+    \left| 2 \sin{ \frac{x_1-x_2}{2}} \cos{ \frac{x_1 + x_2}{2}} \right|
+    \leq 2 \left| \sin{ \frac{x_1 - x_2}{2}} \right| \leq
+    2 \frac{|x_1-x_2|}{2} = \left| x_1-x_2 \right|
+        .\]
+    \end{proof}
+\end{document}
