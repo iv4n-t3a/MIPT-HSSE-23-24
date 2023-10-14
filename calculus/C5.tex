@@ -84,18 +84,19 @@
 
     \begin{proof}
         \[
-        \exists \eps^* > 0: U_{\eps^*}(A) \cap U_{\eps^*}(B) \neq \varnothing
+        \exists \eps^* > 0: U_{\eps^*}(A) \cap U_{\eps^*}(B) = \varnothing
         .\] \[
         A < B \Rarrow
         \forall x \in U_{\eps^*}(A), \forall y \in U_{\eps^*}(B) \hrarrow x < y.
         .\] \[
-        \forall \eps > 0 \quad \exists N_1 \in \N(\eps)
+        \forall \eps > 0 \quad \exists N_1(\eps) \in \N
         \quad \forall n \geq N_1 \hrarrow x_n \in U_{\eps}(A)
         .\] \[
-        \forall \eps > 0 \quad \exists N_2 \in \N(\eps)
-        \quad \forall n \geq N_2 \hrarrow y_n \in U_{\eps}(A)
+        \forall \eps > 0 \quad \exists N_2(\eps) \in \N
+        \quad \forall n \geq N_2 \hrarrow y_n \in U_{\eps}(B)
         .\] \[
-        N := max\{N_1, N_2 \}: \forall n \geq N \hrarrow x_n \in U_{\eps*}(A) \land
+        N := max\{N_1(\eps^*), N_2(\eps^*) \}: \forall n \geq N \hrarrow x_n
+        \in U_{\eps^*}(A) \land
         y_n \in  U_{\eps^*}(B) \Rarrow
         .\] \[
         x_n < y_n
